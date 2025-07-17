@@ -9,10 +9,11 @@ class MyRecordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_d)
+        setContentView(R.layout.activity_my_record)
 
         val goToTestScoreButton=findViewById<Button>(R.id.btn_goToTestScore);
         val goToMyFaceScoreButton=findViewById<Button>(R.id.btn_goToMyFaceScore);
+
 
     }
 
