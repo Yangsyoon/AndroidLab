@@ -10,6 +10,9 @@ interface TestScoreDAO {
     @Query("SELECT * FROM TestScore")
     suspend fun getAllUsers(): List<TestScore>
 
+    @Query("SELECT * FROM TestScore ORDER BY date DESC")  // 최신순
+    suspend fun getAllSortedByDate(): List<TestScore>
+
     @Delete
     suspend fun delete(user: TestScore)
 
