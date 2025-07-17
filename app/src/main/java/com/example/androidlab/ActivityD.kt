@@ -1,9 +1,11 @@
 package com.example.androidlab
 
 import android.app.AlertDialog
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
@@ -11,11 +13,8 @@ import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.highlight.Highlight
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -24,6 +23,7 @@ class ActivityD : AppCompatActivity() {
     lateinit var testScoreDatabase: TestScoreDatabase
     lateinit var myFaceScoreDatabase: MyFaceScoreDatabase
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_d)
@@ -44,7 +44,7 @@ class ActivityD : AppCompatActivity() {
         ).build()
 
         lifecycleScope.launch {
-            // 더미 데이터 삽입 (비어있을 때만)
+            // 더미 데이터 삽입 (비어있으면)
             if (testScoreDatabase.TestScoreDAO().getCount() == 0) {
                 testScoreDatabase.TestScoreDAO().insertAll(
                     listOf(
@@ -64,7 +64,6 @@ class ActivityD : AppCompatActivity() {
                 )
             }
 
-            // 데이터 다시 불러와서 차트 그리기
             val testScoreData = testScoreDatabase.TestScoreDAO().getAllSortedByDate()
             val faceScoreData = myFaceScoreDatabase.MyFaceScoreDAO().getAllSortedByDate()
 
@@ -73,15 +72,19 @@ class ActivityD : AppCompatActivity() {
         }
     }
 
-
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun drawTestScoreLineChart(chart: LineChart, data: List<TestScore>) {
+        val totalVisiblePoints = 7
+        val dataSize = data.size
+        val startX = if (dataSize < totalVisiblePoints) (totalVisiblePoints - dataSize) else 0
+
         val entries = data.mapIndexed { index, score ->
-            Entry(index.toFloat(), (score.emotion1Correct + score.emotion2Correct + score.emotion3Correct + score.emotion4Correct).toFloat())
+            val totalCorrect = score.emotion1Correct + score.emotion2Correct + score.emotion3Correct + score.emotion4Correct
+            Entry((startX + index).toFloat(), totalCorrect.toFloat())
         }
 
-        val lineDataSet = LineDataSet(entries, "Test Score").apply {
+        val lineDataSet = LineDataSet(entries, "").apply {
             color = getColor(R.color.purple_500)
-            valueTextSize = 10f
             setDrawCircles(true)
             setDrawValues(true)
         }
@@ -89,33 +92,48 @@ class ActivityD : AppCompatActivity() {
         chart.data = LineData(lineDataSet)
         chart.xAxis.apply {
             position = XAxis.XAxisPosition.BOTTOM
-            valueFormatter = IndexAxisValueFormatter(data.map { it.date.toLocalDate().toString() })
+            val labels = data.map { it.date.toLocalDate().toString() }
+            val paddedLabels = if (dataSize < totalVisiblePoints) {
+                List(totalVisiblePoints - dataSize) { "" } + labels
+            } else {
+                labels
+            }
+            valueFormatter = IndexAxisValueFormatter(paddedLabels)
             granularity = 1f
             labelRotationAngle = -45f
+            axisMinimum = 0f
+            axisMaximum = (totalVisiblePoints - 1).toFloat()
         }
         chart.axisRight.isEnabled = false
         chart.description = Description().apply { text = "" }
         chart.invalidate()
 
         chart.setOnChartValueSelectedListener(object : com.github.mikephil.charting.listener.OnChartValueSelectedListener {
-            override fun onValueSelected(e: Entry?, h: Highlight?) {
+            override fun onValueSelected(e: Entry?, h: com.github.mikephil.charting.highlight.Highlight?) {
                 e?.x?.toInt()?.let { index ->
-                    showBarChartDialog(data[index])
+                    // startX 보정해서 실제 데이터 인덱스 계산
+                    val dataIndex = index - startX
+                    if (dataIndex in data.indices) {
+                        showBarChartDialog(data[dataIndex])
+                    }
                 }
             }
-
             override fun onNothingSelected() {}
         })
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun drawFaceScoreLineChart(chart: LineChart, data: List<MyFaceScore>) {
+        val totalVisiblePoints = 7
+        val dataSize = data.size
+        val startX = if (dataSize < totalVisiblePoints) (totalVisiblePoints - dataSize) else 0
+
         val entries = data.mapIndexed { index, item ->
             val totalScore = item.emotion1Score + item.emotion2Score + item.emotion3Score + item.emotion4Score
-            Entry(index.toFloat(), totalScore.toFloat())
+            Entry((startX + index).toFloat(), totalScore.toFloat())
         }
 
-
-        val lineDataSet = LineDataSet(entries, "Face Score").apply {
+        val lineDataSet = LineDataSet(entries, "").apply {
             color = getColor(R.color.teal_700)
             valueTextSize = 10f
             setDrawCircles(true)
@@ -125,23 +143,33 @@ class ActivityD : AppCompatActivity() {
         chart.data = LineData(lineDataSet)
         chart.xAxis.apply {
             position = XAxis.XAxisPosition.BOTTOM
-            valueFormatter = IndexAxisValueFormatter(data.map { it.date.toLocalDate().toString() })
+            val labels = data.map { it.date.toLocalDate().toString() }
+            val paddedLabels = if (dataSize < totalVisiblePoints) {
+                List(totalVisiblePoints - dataSize) { "" } + labels
+            } else {
+                labels
+            }
+            valueFormatter = IndexAxisValueFormatter(paddedLabels)
             granularity = 1f
             labelRotationAngle = -45f
+            axisMinimum = 0f
+            axisMaximum = (totalVisiblePoints - 1).toFloat()
         }
         chart.axisRight.isEnabled = false
         chart.description = Description().apply { text = "" }
         chart.invalidate()
 
-        chart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
-            override fun onValueSelected(e: Entry?, h: Highlight?) {
+        chart.setOnChartValueSelectedListener(object : com.github.mikephil.charting.listener.OnChartValueSelectedListener {
+            override fun onValueSelected(e: Entry?, h: com.github.mikephil.charting.highlight.Highlight?) {
                 e?.x?.toInt()?.let { index ->
-                    showFaceScoreDialog(data[index])
+                    val dataIndex = index - startX
+                    if (dataIndex in data.indices) {
+                        showFaceScoreDialog(data[dataIndex])
+                    }
                 }
             }
             override fun onNothingSelected() {}
         })
-
     }
 
     private fun showBarChartDialog(score: TestScore) {
@@ -156,7 +184,6 @@ class ActivityD : AppCompatActivity() {
             .create()
 
         closeButton.setOnClickListener { dialog.dismiss() }
-
         dialog.show()
     }
 
@@ -164,18 +191,16 @@ class ActivityD : AppCompatActivity() {
         val corrects = listOf(score.emotion1Correct, score.emotion2Correct, score.emotion3Correct, score.emotion4Correct)
         val wrongs = listOf(score.emotion1Wrong, score.emotion2Wrong, score.emotion3Wrong, score.emotion4Wrong)
 
-        val entries = corrects.indices.map { index ->
-            BarEntry(index.toFloat(), floatArrayOf(corrects[index].toFloat(), wrongs[index].toFloat()))
+        val entries = corrects.indices.map { i ->
+            BarEntry(i.toFloat(), floatArrayOf(corrects[i].toFloat(), wrongs[i].toFloat()))
         }
 
-        val dataSet = BarDataSet(entries, "감정 정오답").apply {
+        val dataSet = BarDataSet(entries, "감정 탐정 점수").apply {
             setColors(intArrayOf(R.color.blue, R.color.red), this@ActivityD)
             stackLabels = arrayOf("맞음", "틀림")
         }
 
-        chart.data = BarData(dataSet).apply {
-            barWidth = 0.5f
-        }
+        chart.data = BarData(dataSet).apply { barWidth = 0.5f }
 
         chart.xAxis.apply {
             valueFormatter = IndexAxisValueFormatter(listOf("감정1", "감정2", "감정3", "감정4"))
@@ -191,18 +216,17 @@ class ActivityD : AppCompatActivity() {
 
     private fun showFaceScoreDialog(score: MyFaceScore) {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("감정별 점수 상세")
+        builder.setTitle("표정 짓기 점수")
 
         val message = """
-        감정1 점수: ${score.emotion1Score}
-        감정2 점수: ${score.emotion2Score}
-        감정3 점수: ${score.emotion3Score}
-        감정4 점수: ${score.emotion4Score}
-    """.trimIndent()
+            감정1: ${score.emotion1Score}점
+            감정2: ${score.emotion2Score}점
+            감정3: ${score.emotion3Score}점
+            감정4: ${score.emotion4Score}점
+        """.trimIndent()
 
         builder.setMessage(message)
         builder.setPositiveButton("닫기") { dialog, _ -> dialog.dismiss() }
         builder.show()
     }
-
 }
