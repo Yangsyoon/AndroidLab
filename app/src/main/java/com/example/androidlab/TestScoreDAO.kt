@@ -18,4 +18,11 @@ interface TestScoreDAO {
 
     @Update
     suspend fun update(user: TestScore)
+
+    @Query("SELECT COUNT(*) FROM TestScore")
+    suspend fun getCount(): Int
+
+    @Insert
+    suspend fun insertAll(data: List<TestScore>)
+
 }

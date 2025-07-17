@@ -4,27 +4,29 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
-@Database(entities = [TestScore::class], version = 1)
-abstract class TestScoreDatabase : RoomDatabase() {
-    abstract fun TestScoreDAO(): TestScoreDAO
+@Database(entities = [MyFaceScore::class], version = 1)
+@TypeConverters(Converters::class)
+abstract class MyFaceScoreDatabase : RoomDatabase() {
+    abstract fun MyFaceScoreDAO(): MyFaceScoreDAO
 
     companion object {
         private val mutex = Mutex()
-        private var instance: TestScoreDatabase? = null
+        private var instance: MyFaceScoreDatabase? = null
 
-        suspend fun getInstance(context: Context): TestScoreDatabase {
+        suspend fun getInstance(context: Context): MyFaceScoreDatabase {
             return instance ?: mutex.withLock {
                 instance ?: buildDatabase(context).also { instance = it }
             }
         }
 
-        private fun buildDatabase(context: Context): TestScoreDatabase {
+        private fun buildDatabase(context: Context): MyFaceScoreDatabase {
             return Room.databaseBuilder(
                 context.applicationContext,
-                TestScoreDatabase::class.java,
+                MyFaceScoreDatabase::class.java,
                 "app_database"
             ).build()
         }
