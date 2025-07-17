@@ -1,4 +1,4 @@
-package com.example.androidlab
+package com.example.androidlab.database
 
 import android.os.Build
 import androidx.annotation.RequiresApi

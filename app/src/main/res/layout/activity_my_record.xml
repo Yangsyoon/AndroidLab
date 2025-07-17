@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 첫 번째 버튼 영역 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_goToTestScore"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:background="#03FFFF"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_goToMyFaceScore">
+
+        <!-- 큰 텍스트: 왼쪽 위 -->
+        <TextView
+            android:id="@+id/textMain1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="나는 감정 탐정!"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"/>
+
+        <!-- 작은 텍스트: 오른쪽 아래 -->
+        <TextView
+            android:id="@+id/textSub1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점수 보러 가기 →"
+            android:textSize="20sp"
+            android:textColor="#666666"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 두 번째 버튼 영역 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_goToMyFaceScore"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:background="#FFFF03"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_goToTestScore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- 큰 텍스트: 왼쪽 위 -->
+        <TextView
+            android:id="@+id/textMain2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="표정짓기 게임"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"/>
+
+        <!-- 작은 텍스트: 오른쪽 아래 -->
+        <TextView
+            android:id="@+id/textSub2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점수 보러 가기 →"
+            android:textSize="20sp"
+            android:textColor="#666666"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

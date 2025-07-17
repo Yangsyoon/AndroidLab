@@ -1,4 +1,4 @@
-package com.example.androidlab
+package com.example.androidlab.ActivityD
 
 import android.app.AlertDialog
 import android.os.Build
@@ -9,12 +9,24 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
+import com.example.androidlab.R
+import com.example.androidlab.database.MyFaceScore
+import com.example.androidlab.database.MyFaceScoreDatabase
+import com.example.androidlab.database.TestScore
+import com.example.androidlab.database.TestScoreDatabase
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -48,18 +60,66 @@ class ActivityD : AppCompatActivity() {
             if (testScoreDatabase.TestScoreDAO().getCount() == 0) {
                 testScoreDatabase.TestScoreDAO().insertAll(
                     listOf(
-                        TestScore(date = LocalDateTime.now().minusDays(3), emotion1Correct = 5, emotion1Wrong = 1, emotion2Correct = 4, emotion2Wrong = 2, emotion3Correct = 6, emotion3Wrong = 0, emotion4Correct = 3, emotion4Wrong = 3),
-                        TestScore(date = LocalDateTime.now().minusDays(2), emotion1Correct = 3, emotion1Wrong = 3, emotion2Correct = 7, emotion2Wrong = 1, emotion3Correct = 5, emotion3Wrong = 1, emotion4Correct = 4, emotion4Wrong = 2),
-                        TestScore(date = LocalDateTime.now().minusDays(1), emotion1Correct = 6, emotion1Wrong = 0, emotion2Correct = 5, emotion2Wrong = 2, emotion3Correct = 4, emotion3Wrong = 2, emotion4Correct = 5, emotion4Wrong = 1)
+                        TestScore(
+                            date = LocalDateTime.now().minusDays(3),
+                            emotion1Correct = 5,
+                            emotion1Wrong = 1,
+                            emotion2Correct = 4,
+                            emotion2Wrong = 2,
+                            emotion3Correct = 6,
+                            emotion3Wrong = 0,
+                            emotion4Correct = 3,
+                            emotion4Wrong = 3
+                        ),
+                        TestScore(
+                            date = LocalDateTime.now().minusDays(2),
+                            emotion1Correct = 3,
+                            emotion1Wrong = 3,
+                            emotion2Correct = 7,
+                            emotion2Wrong = 1,
+                            emotion3Correct = 5,
+                            emotion3Wrong = 1,
+                            emotion4Correct = 4,
+                            emotion4Wrong = 2
+                        ),
+                        TestScore(
+                            date = LocalDateTime.now().minusDays(1),
+                            emotion1Correct = 6,
+                            emotion1Wrong = 0,
+                            emotion2Correct = 5,
+                            emotion2Wrong = 2,
+                            emotion3Correct = 4,
+                            emotion3Wrong = 2,
+                            emotion4Correct = 5,
+                            emotion4Wrong = 1
+                        )
                     )
                 )
             }
             if (myFaceScoreDatabase.MyFaceScoreDAO().getCount() == 0) {
                 myFaceScoreDatabase.MyFaceScoreDAO().insertAll(
                     listOf(
-                        MyFaceScore(date = LocalDateTime.now().minusDays(3), emotion1Score = 70, emotion2Score = 65, emotion3Score = 80, emotion4Score = 60),
-                        MyFaceScore(date = LocalDateTime.now().minusDays(2), emotion1Score = 75, emotion2Score = 60, emotion3Score = 78, emotion4Score = 63),
-                        MyFaceScore(date = LocalDateTime.now().minusDays(1), emotion1Score = 80, emotion2Score = 70, emotion3Score = 75, emotion4Score = 65)
+                        MyFaceScore(
+                            date = LocalDateTime.now().minusDays(3),
+                            emotion1Score = 70,
+                            emotion2Score = 65,
+                            emotion3Score = 80,
+                            emotion4Score = 60
+                        ),
+                        MyFaceScore(
+                            date = LocalDateTime.now().minusDays(2),
+                            emotion1Score = 75,
+                            emotion2Score = 60,
+                            emotion3Score = 78,
+                            emotion4Score = 63
+                        ),
+                        MyFaceScore(
+                            date = LocalDateTime.now().minusDays(1),
+                            emotion1Score = 80,
+                            emotion2Score = 70,
+                            emotion3Score = 75,
+                            emotion4Score = 65
+                        )
                     )
                 )
             }
@@ -108,8 +168,8 @@ class ActivityD : AppCompatActivity() {
         chart.description = Description().apply { text = "" }
         chart.invalidate()
 
-        chart.setOnChartValueSelectedListener(object : com.github.mikephil.charting.listener.OnChartValueSelectedListener {
-            override fun onValueSelected(e: Entry?, h: com.github.mikephil.charting.highlight.Highlight?) {
+        chart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
+            override fun onValueSelected(e: Entry?, h: Highlight?) {
                 e?.x?.toInt()?.let { index ->
                     // startX 보정해서 실제 데이터 인덱스 계산
                     val dataIndex = index - startX
@@ -159,8 +219,8 @@ class ActivityD : AppCompatActivity() {
         chart.description = Description().apply { text = "" }
         chart.invalidate()
 
-        chart.setOnChartValueSelectedListener(object : com.github.mikephil.charting.listener.OnChartValueSelectedListener {
-            override fun onValueSelected(e: Entry?, h: com.github.mikephil.charting.highlight.Highlight?) {
+        chart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
+            override fun onValueSelected(e: Entry?, h: Highlight?) {
                 e?.x?.toInt()?.let { index ->
                     val dataIndex = index - startX
                     if (dataIndex in data.indices) {
