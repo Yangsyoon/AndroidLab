@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidLab"
         tools:targetApi="31">
-        <activity android:name=".ActivityA" />
+        <activity android:name=".EmotionQuizActivity" />
         <activity android:name=".ActivityB" />
         <activity android:name=".ActivityC" />
         <activity android:name=".ActivityD" />

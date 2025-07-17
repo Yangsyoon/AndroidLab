@@ -4,10 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androidlab.ActivityA
-import com.example.androidlab.ActivityB
-import com.example.androidlab.ActivityC
-import com.example.androidlab.ActivityD
+import com.example.androidlab.EmotionQuizActivity
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         val btnD = findViewById<Button>(R.id.btnD)
 
         btnA.setOnClickListener {
-            startActivity(Intent(this, ActivityA::class.java))
+            startActivity(Intent(this, EmotionQuizActivity::class.java))
         }
 
         btnB.setOnClickListener {
