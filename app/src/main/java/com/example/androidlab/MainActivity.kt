@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androidlab.ActivityD.ActivityD
 import com.example.androidlab.ActivityD.MyRecordActivity
 import com.example.androidlab.EmotionQuizActivity
 

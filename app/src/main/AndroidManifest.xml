@@ -17,7 +17,6 @@
         <activity android:name=".EmotionPracticeActivity" />
         <activity android:name=".ActivityB" />
         <activity android:name=".ActivityC" />
-        <activity android:name=".ActivityD.ActivityD" />
         <activity android:name=".ActivityD.MyFaceScoreActivity" />
         <activity android:name=".ActivityD.TestScoreActivity" />
         <activity android:name=".ActivityD.MyRecordActivity" />
