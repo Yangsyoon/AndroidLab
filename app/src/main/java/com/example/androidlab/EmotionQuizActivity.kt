@@ -13,10 +13,10 @@ class EmotionQuizActivity : AppCompatActivity() {
     data class Question(val imageResId: Int, val correctEmotion: String)
 
     private val questionList = listOf(
-        Question(R.drawable.surprised_sample1, "놀람"),
-        Question(R.drawable.sad_sample1, "슬픔"),
-        Question(R.drawable.angry_sample1, "화남"),
-        Question(R.drawable.happy_sample1, "기쁨"),
+        Question(R.drawable.test_surprised_sample1, "놀람"),
+        Question(R.drawable.test_sad_sample1, "슬픔"),
+        Question(R.drawable.test_angry_sample1, "화남"),
+        Question(R.drawable.test_happy_sample1, "기쁨"),
         // 최대 16문제까지 추가 가능
     )
 

@@ -15,7 +15,7 @@
         android:layout_weight="2"
         android:scaleType="centerCrop"
         android:contentDescription="문제 이미지"
-        android:src="@drawable/surprised_sample1" />
+        android:src="@drawable/test_surprised_sample1" />
 
     <!-- 감정 버튼 영역 (2x2 배치) -->
     <GridLayout

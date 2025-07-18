@@ -12,13 +12,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnA = findViewById<Button>(R.id.btnA)
+        val btnA = findViewById<Button>(R.id.button_detective)
         val btnB = findViewById<Button>(R.id.btnB)
         val btnC = findViewById<Button>(R.id.btnC)
         val btnD = findViewById<Button>(R.id.btnD)
 
         btnA.setOnClickListener {
-            startActivity(Intent(this, EmotionQuizActivity::class.java))
+            startActivity(Intent(this, EmotionModeSelectActivity::class.java))
         }
 
         btnB.setOnClickListener {

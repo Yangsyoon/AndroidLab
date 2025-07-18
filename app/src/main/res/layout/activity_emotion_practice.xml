@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <!-- 감정 사진 -->
+    <ImageView
+        android:id="@+id/image_emotion"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:scaleType="centerCrop"
+        android:contentDescription="감정 사진"
+        android:src="@drawable/test_happy_sample1" />
+
+    <!-- 정답 감정 텍스트 -->
+    <TextView
+        android:id="@+id/text_emotion_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="감정: 기쁨"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- 다음 사진 버튼 -->
+    <Button
+        android:id="@+id/btn_next_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="다음 사진 보기" />
+    <Button
+        android:id="@+id/button_finish_practice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="연습 완료"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FF6600"
+        android:textColor="#FFFFFF" />
+</LinearLayout>
