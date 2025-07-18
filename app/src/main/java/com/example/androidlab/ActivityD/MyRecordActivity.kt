@@ -69,10 +69,10 @@ class MyRecordActivity : AppCompatActivity() {
         return List(9) { i ->
             MyFaceScore(
                 date = now.minusDays(i.toLong()),
-                emotion1Score = 80,
-                emotion2Score = 85,
-                emotion3Score = 70,
-                emotion4Score = 95
+                emotion1Score = 80+i,
+                emotion2Score = 85+i,
+                emotion3Score = 70+i,
+                emotion4Score = 95+i
             )
         }
     }
@@ -82,14 +82,14 @@ class MyRecordActivity : AppCompatActivity() {
         return List(9) { i ->
             TestScore(
                 date = now.minusDays(i.toLong()),
-                emotion1Correct = 60,
-                emotion1Wrong = 40,
-                emotion2Correct = 70,
-                emotion2Wrong = 30,
-                emotion3Correct = 50,
-                emotion3Wrong = 50,
-                emotion4Correct = 80,
-                emotion4Wrong = 20
+                emotion1Correct = 60-i,
+                emotion1Wrong = 40+i,
+                emotion2Correct = 70-i,
+                emotion2Wrong = 30+i,
+                emotion3Correct = 50-i,
+                emotion3Wrong = 50+i,
+                emotion4Correct = 80-i,
+                emotion4Wrong = 20+i
             )
         }
     }

@@ -1,6 +1,7 @@
 package com.example.androidlab.ActivityD
 
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidlab.R
@@ -12,6 +13,11 @@ class TestScoreActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test_score)
+
+        val backButton = findViewById<ImageButton>(R.id.buttonBack)
+        backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         toggleGraph = findViewById(R.id.toggleGraph)
         toggleGraph.setChecked(false)
