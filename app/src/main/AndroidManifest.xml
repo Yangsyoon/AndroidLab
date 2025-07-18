@@ -18,6 +18,8 @@
         <activity android:name=".ActivityB" />
         <activity android:name=".ActivityC" />
         <activity android:name=".ActivityD.ActivityD" />
+        <activity android:name=".ActivityD.MyFaceScoreActivity" />
+        <activity android:name=".ActivityD.MyRecordActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -40,7 +40,7 @@ class ActivityD : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_d)
 
-        val testScoreChart = findViewById<LineChart>(R.id.testScoreChart)
+        /*val testScoreChart = findViewById<LineChart>(R.id.testScoreChart)
         val myFaceScoreChart = findViewById<LineChart>(R.id.myFaceScoreChart)
 
         testScoreDatabase = Room.databaseBuilder(
@@ -128,12 +128,12 @@ class ActivityD : AppCompatActivity() {
             val testScoreData = testScoreDatabase.TestScoreDAO().getAllSortedByDate()
             val faceScoreData = myFaceScoreDatabase.MyFaceScoreDAO().getAllSortedByDate()
 
-            drawTestScoreLineChart(testScoreChart, testScoreData)
-            drawFaceScoreLineChart(myFaceScoreChart, faceScoreData)
-        }
+            //drawTestScoreLineChart(testScoreChart, testScoreData)
+            //drawFaceScoreLineChart(myFaceScoreChart, faceScoreData)
+        }*/
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    /*@RequiresApi(Build.VERSION_CODES.O)
     private fun drawTestScoreLineChart(chart: LineChart, data: List<TestScore>) {
         val totalVisiblePoints = 7
         val dataSize = data.size
@@ -289,5 +289,5 @@ class ActivityD : AppCompatActivity() {
         builder.setMessage(message)
         builder.setPositiveButton("닫기") { dialog, _ -> dialog.dismiss() }
         builder.show()
-    }
+    }*/
 }

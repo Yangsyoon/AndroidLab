@@ -1,6 +1,7 @@
 package com.example.androidlab.database
 
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MyFaceScoreDAO {
@@ -10,8 +11,9 @@ interface MyFaceScoreDAO {
     @Query("SELECT * FROM MyFaceScore")
     suspend fun getAllUsers(): List<MyFaceScore>
 
-    @Query("SELECT * FROM MyFaceScore ORDER BY date DESC")  // 최신순
-    suspend fun getAllSortedByDate(): List<MyFaceScore>
+    @Query("SELECT * FROM MyFaceScore ORDER BY date DESC")
+    fun getAllSortedByDate(): Flow<List<MyFaceScore>>
+
 
     @Delete
     suspend fun delete(user: MyFaceScore)

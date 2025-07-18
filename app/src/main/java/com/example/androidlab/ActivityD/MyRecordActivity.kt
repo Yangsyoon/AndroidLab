@@ -1,9 +1,12 @@
 package com.example.androidlab.ActivityD
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.androidlab.R
+import kotlin.jvm.java
 
 class MyRecordActivity : AppCompatActivity() {
 
@@ -11,10 +14,13 @@ class MyRecordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_record)
 
-        val goToTestScoreButton=findViewById<Button>(R.id.btn_goToTestScore);
-        val goToMyFaceScoreButton=findViewById<Button>(R.id.btn_goToMyFaceScore);
+        val goToTestScoreButton=findViewById<ConstraintLayout>(R.id.btn_goToTestScore);
+        val goToMyFaceScoreButton=findViewById<ConstraintLayout>(R.id.btn_goToMyFaceScore);
 
-
+        goToTestScoreButton.setOnClickListener {
+            val intent = Intent(this, MyFaceScoreActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }

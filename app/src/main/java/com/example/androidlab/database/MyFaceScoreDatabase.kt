@@ -12,24 +12,22 @@ import kotlinx.coroutines.sync.withLock
 @Database(entities = [MyFaceScore::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class MyFaceScoreDatabase : RoomDatabase() {
-    abstract fun MyFaceScoreDAO(): MyFaceScoreDAO
+    abstract fun myFaceScoreDAO(): MyFaceScoreDAO
 
     companion object {
-        private val mutex = Mutex()
-        private var instance: MyFaceScoreDatabase? = null
+        @Volatile
+        private var INSTANCE: MyFaceScoreDatabase? = null
 
-        suspend fun getInstance(context: Context): MyFaceScoreDatabase {
-            return instance ?: mutex.withLock {
-                instance ?: buildDatabase(context).also { instance = it }
+        fun getInstance(context: Context): MyFaceScoreDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    MyFaceScoreDatabase::class.java,
+                    "my_face_score_db"
+                ).build()
+                INSTANCE = instance
+                instance
             }
-        }
-
-        private fun buildDatabase(context: Context): MyFaceScoreDatabase {
-            return Room.databaseBuilder(
-                context.applicationContext,
-                MyFaceScoreDatabase::class.java,
-                "app_database"
-            ).build()
         }
     }
 }
