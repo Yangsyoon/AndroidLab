@@ -2,20 +2,42 @@ package com.example.androidlab.ActivityD
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.androidlab.R
-import kotlin.jvm.java
+import com.example.androidlab.database.MyFaceScore
+import com.example.androidlab.database.MyFaceScoreDAO
+import com.example.androidlab.database.MyFaceScoreDatabase
+import com.example.androidlab.database.TestScore
+import com.example.androidlab.database.TestScoreDAO
+import com.example.androidlab.database.TestScoreDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
 
 class MyRecordActivity : AppCompatActivity() {
+
+    private lateinit var myFaceScoreDao: MyFaceScoreDAO
+    private lateinit var testScoreDao: TestScoreDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_record)
 
-        val goToTestScoreButton=findViewById<ConstraintLayout>(R.id.btn_goToTestScore);
-        val goToMyFaceScoreButton=findViewById<ConstraintLayout>(R.id.btn_goToMyFaceScore);
+        myFaceScoreDao = MyFaceScoreDatabase.getInstance(applicationContext).myFaceScoreDAO()
+        testScoreDao = TestScoreDatabase.getInstance(applicationContext).testScoreDAO()
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                checkAndInsertDummyData()
+            }
+        }
+
+        val goToTestScoreButton = findViewById<ConstraintLayout>(R.id.btn_goToTestScore)
+        val goToMyFaceScoreButton = findViewById<ConstraintLayout>(R.id.btn_goToMyFaceScore)
 
         goToMyFaceScoreButton.setOnClickListener {
             val intent = Intent(this, MyFaceScoreActivity::class.java)
@@ -27,4 +49,48 @@ class MyRecordActivity : AppCompatActivity() {
         }
     }
 
+    private suspend fun checkAndInsertDummyData() {
+        val faceScoreCount = myFaceScoreDao.getCount()
+        val testScoreCount = testScoreDao.getCount()
+
+        if (faceScoreCount == 0) {
+            val dummyFaceScores = generateDummyFaceScores()
+            myFaceScoreDao.insertAll(dummyFaceScores)
+        }
+
+        if (testScoreCount == 0) {
+            val dummyTestScores = generateDummyTestScores()
+            testScoreDao.insertAll(dummyTestScores)
+        }
+    }
+
+    private fun generateDummyFaceScores(): List<MyFaceScore> {
+        val now = LocalDateTime.now()
+        return List(9) { i ->
+            MyFaceScore(
+                date = now.minusDays(i.toLong()),
+                emotion1Score = 80,
+                emotion2Score = 85,
+                emotion3Score = 70,
+                emotion4Score = 95
+            )
+        }
+    }
+
+    private fun generateDummyTestScores(): List<TestScore> {
+        val now = LocalDateTime.now()
+        return List(9) { i ->
+            TestScore(
+                date = now.minusDays(i.toLong()),
+                emotion1Correct = 60,
+                emotion1Wrong = 40,
+                emotion2Correct = 70,
+                emotion2Wrong = 30,
+                emotion3Correct = 50,
+                emotion3Wrong = 50,
+                emotion4Correct = 80,
+                emotion4Wrong = 20
+            )
+        }
+    }
 }
