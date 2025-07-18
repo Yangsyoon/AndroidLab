@@ -8,7 +8,7 @@ import java.time.LocalDateTime
 data class TestScore(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val date: LocalDateTime,
-    val emotion1Correct: Int,
+    val emotion1Correct: Int,//2개 합쳐서 100 단위로 저장
     val emotion1Wrong: Int,
     val emotion2Correct: Int,
     val emotion2Wrong: Int,

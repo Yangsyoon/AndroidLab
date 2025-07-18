@@ -17,8 +17,12 @@ class MyRecordActivity : AppCompatActivity() {
         val goToTestScoreButton=findViewById<ConstraintLayout>(R.id.btn_goToTestScore);
         val goToMyFaceScoreButton=findViewById<ConstraintLayout>(R.id.btn_goToMyFaceScore);
 
-        goToTestScoreButton.setOnClickListener {
+        goToMyFaceScoreButton.setOnClickListener {
             val intent = Intent(this, MyFaceScoreActivity::class.java)
+            startActivity(intent)
+        }
+        goToTestScoreButton.setOnClickListener {
+            val intent = Intent(this, TestScoreActivity::class.java)
             startActivity(intent)
         }
     }
