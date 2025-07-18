@@ -55,6 +55,7 @@ class ActivityD : AppCompatActivity() {
             "my_face_score_db"
         ).build()
 
+
         lifecycleScope.launch {
             // 더미 데이터 삽입 (비어있으면)
             if (testScoreDatabase.TestScoreDAO().getCount() == 0) {
