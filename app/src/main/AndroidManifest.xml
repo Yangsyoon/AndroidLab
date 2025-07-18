@@ -17,8 +17,7 @@
         <activity android:name=".EmotionPracticeActivity" />
         <activity android:name=".ActivityB" />
         <activity android:name=".ActivityC" />
-        <activity android:name=".ActivityD" />
-
+        <activity android:name=".ActivityD.ActivityD" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

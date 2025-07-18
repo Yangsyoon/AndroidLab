@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation(libs.room.runtime)
     kapt(libs.room.compiler)
     implementation(libs.kotlin.stdlib)
