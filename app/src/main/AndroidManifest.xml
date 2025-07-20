@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.front" android:required="false" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,7 +20,11 @@
         <activity android:name=".EmotionModeSelectActivity" />
         <activity android:name=".EmotionPracticeActivity" />
         <activity android:name=".ActivityB" />
-        <activity android:name=".ActivityC" />
+        <activity android:name=".ActivityC.MyFaceActivity" />
+        <activity android:name=".ActivityC.MyFace1Activity" />
+        <activity android:name=".ActivityC.MyFace2Activity" />
+        <activity android:name=".ActivityC.MyFace3Activity" />
+        <activity android:name=".ActivityC.MyFace4Activity" />
         <activity android:name=".ActivityD.MyFaceScoreActivity" />
         <activity android:name=".ActivityD.TestScoreActivity" />
         <activity android:name=".ActivityD.MyRecordActivity" />

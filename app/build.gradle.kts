@@ -45,10 +45,22 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    implementation("org.tensorflow:tensorflow-lite:2.12.0")
+
     implementation("androidx.fragment:fragment-ktx:1.8.8")
+
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
     implementation(libs.room.runtime)
     kapt(libs.room.compiler)
+
+    implementation("androidx.camera:camera-core:1.4.2")
+    implementation("androidx.camera:camera-camera2:1.4.2")
+    implementation("androidx.camera:camera-lifecycle:1.4.2")
+    implementation("androidx.camera:camera-view:1.4.2")
+    implementation("androidx.camera:camera-extensions:1.4.2")
+
     implementation(libs.kotlin.stdlib)
     implementation(libs.room.ktx)
 

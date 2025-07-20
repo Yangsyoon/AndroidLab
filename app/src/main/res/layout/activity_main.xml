@@ -22,7 +22,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnC"
-        android:text="Go to C"
+        android:text="표정 짓기 게임"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp" />

@@ -1,0 +1,23 @@
+<!-- res/layout/activity_camera.xml -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cameraLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/countdownText"
+        android:text="3"
+        android:textSize="72sp"
+        android:layout_gravity="center"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"
+        android:background="#AA000000"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</FrameLayout>
