@@ -1,10 +1,13 @@
 package com.example.androidlab.ActivityD
 
 
+import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -12,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.androidlab.R
 import com.example.androidlab.database.MyFaceScore
 import com.example.androidlab.database.TestScore
+import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
@@ -29,6 +33,8 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
 
     private val viewModel: MyFaceScoreViewModel by activityViewModels()
     private lateinit var lineChart: LineChart
+
+    private val emotionLabels = listOf("분노", "혐오", "두려움", "기쁨", "슬픔", "놀람", "무표정")
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,8 +57,11 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
 
         // ✅ Entry 만들기 (x 값에 spacing 반영)
         val entries = data.mapIndexed { index, item ->
-            val totalScore = item.emotion1Score + item.emotion2Score + item.emotion3Score + item.emotion4Score
-            Entry((startX + index) * spacing, totalScore.toFloat())
+            val totalScore = item.emotion1Correct + item.emotion2Correct + item.emotion3Correct + item.emotion4Correct + item.emotion5Correct + item.emotion6Correct + item.emotion7Correct
+            val wrongScore = item.emotion1Wrong + item.emotion2Wrong + item.emotion3Wrong + item.emotion4Wrong + item.emotion5Wrong + item.emotion6Wrong + item.emotion7Wrong
+
+            val final_score=(totalScore*100/(totalScore+wrongScore)).toInt()
+            Entry((startX + index) * spacing, final_score.toFloat())
         }
 
         // ✅ DataSet 구성
@@ -112,7 +121,7 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
                 if (entry != null) {
                     val index = (entry.x / spacing).toInt() - startX
                     if (index in data.indices) {
-                        showFaceScoreDialog(data[index])
+                        showBarChartDialog(data[index])
                     }
                 }
             }
@@ -132,18 +141,44 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
         })
     }
 
-    private fun showFaceScoreDialog(score: MyFaceScore) {
-        val message = """
-            감정1: ${score.emotion1Score}점
-            감정2: ${score.emotion2Score}점
-            감정3: ${score.emotion3Score}점
-            감정4: ${score.emotion4Score}점
-        """.trimIndent()
+    private fun showBarChartDialog(score: MyFaceScore) {
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_bar_chart, null)
+        val chart = dialogView.findViewById<BarChart>(R.id.dialogBarChart)
+        val closeButton = dialogView.findViewById<Button>(R.id.closeButton)
 
-        android.app.AlertDialog.Builder(requireContext())
-            .setTitle("표정 점수")
-            .setMessage(message)
-            .setPositiveButton("닫기") { dialog, _ -> dialog.dismiss() }
-            .show()
+        drawHorizontalBarChart(chart, score)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        closeButton.setOnClickListener { dialog.dismiss() }
+        dialog.show()
+    }
+    private fun drawHorizontalBarChart(chart: BarChart, score: MyFaceScore) {
+        val corrects = listOf(score.emotion1Correct, score.emotion2Correct, score.emotion3Correct, score.emotion4Correct, score.emotion5Correct, score.emotion6Correct, score.emotion7Correct)
+        val wrongs = listOf(score.emotion1Wrong, score.emotion2Wrong, score.emotion3Wrong, score.emotion4Wrong, score.emotion5Wrong, score.emotion6Wrong, score.emotion7Wrong)
+
+        val entries = corrects.indices.map { i ->
+            BarEntry(i.toFloat(), floatArrayOf(corrects[i].toFloat(), wrongs[i].toFloat()))
+        }
+
+        val dataSet = BarDataSet(entries, "내 표정 짓기 점수").apply {
+            setColors(intArrayOf(R.color.blue, R.color.red), requireContext())
+            stackLabels = arrayOf("맞음", "틀림")
+        }
+
+        chart.data = BarData(dataSet).apply { barWidth = 0.5f }
+
+        chart.xAxis.apply {
+            valueFormatter = IndexAxisValueFormatter(emotionLabels)
+            position = XAxis.XAxisPosition.BOTTOM
+            granularity = 1f
+        }
+
+        chart.axisLeft.axisMinimum = 0f
+        chart.axisRight.isEnabled = false
+        chart.description = Description().apply { text = "" }
+        chart.invalidate()
     }
 }

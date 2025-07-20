@@ -20,8 +20,12 @@ class MyFaceScoreAdapter(private val onItemClick: (MyFaceScore) -> Unit) : ListA
         fun bind(item: MyFaceScore) {
             val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
             dateText.text = item.date.format(formatter)
-            val totalScore = item.emotion1Score + item.emotion2Score + item.emotion3Score + item.emotion4Score
-            totalScoreText.text = "총합: $totalScore 점"
+            val totalScore = item.emotion1Correct + item.emotion2Correct + item.emotion3Correct + item.emotion4Correct + item.emotion5Correct + item.emotion6Correct + item.emotion7Correct
+            val wrongScore = item.emotion1Wrong + item.emotion2Wrong + item.emotion3Wrong + item.emotion4Wrong + item.emotion5Wrong + item.emotion6Wrong + item.emotion7Wrong
+
+            val final_score=(totalScore*100/(totalScore+wrongScore)).toInt()
+
+            totalScoreText.text = "총합: $final_score 점"
 
             itemView.setOnClickListener { onItemClick(item) }
         }

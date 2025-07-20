@@ -53,29 +53,12 @@ class MyRecordActivity : AppCompatActivity() {
         val faceScoreCount = myFaceScoreDao.getCount()
         val testScoreCount = testScoreDao.getCount()
 
-        if (faceScoreCount == 0) {
-            val dummyFaceScores = generateDummyFaceScores()
-            myFaceScoreDao.insertAll(dummyFaceScores)
-        }
-
         if (testScoreCount == 0) {
             val dummyTestScores = generateDummyTestScores()
             testScoreDao.insertAll(dummyTestScores)
         }
     }
 
-    private fun generateDummyFaceScores(): List<MyFaceScore> {
-        val now = LocalDateTime.now()
-        return List(9) { i ->
-            MyFaceScore(
-                date = now.minusDays(i.toLong()),
-                emotion1Score = 80+i,
-                emotion2Score = 85+i,
-                emotion3Score = 70+i,
-                emotion4Score = 95+i
-            )
-        }
-    }
 
     private fun generateDummyTestScores(): List<TestScore> {
         val now = LocalDateTime.now()
