@@ -15,7 +15,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnB"
-        android:text="Go to B"
+        android:text="속마음 알아보기"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp" />

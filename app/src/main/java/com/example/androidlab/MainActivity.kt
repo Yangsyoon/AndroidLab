@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.androidlab.ActivityB.YourFace1Activity
 import com.example.androidlab.ActivityC.MyFaceActivity
 import com.example.androidlab.ActivityD.MyRecordActivity
 import com.example.androidlab.EmotionQuizActivity
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnB.setOnClickListener {
-            startActivity(Intent(this, ActivityB::class.java))
+            startActivity(Intent(this, YourFace1Activity::class.java))
         }
 
         btnC.setOnClickListener {

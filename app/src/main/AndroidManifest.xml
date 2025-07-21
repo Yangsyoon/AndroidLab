@@ -19,7 +19,7 @@
         <activity android:name=".EmotionQuizActivity" />
         <activity android:name=".EmotionModeSelectActivity" />
         <activity android:name=".EmotionPracticeActivity" />
-        <activity android:name=".ActivityB" />
+        <activity android:name=".ActivityB.YourFace1Activity" />
         <activity android:name=".ActivityC.MyFaceActivity" />
         <activity android:name=".ActivityC.MyFace1Activity" />
         <activity android:name=".ActivityC.MyFace2Activity" />
