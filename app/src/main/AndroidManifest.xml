@@ -16,9 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidLab"
         tools:targetApi="31">
-        <activity android:name=".EmotionQuizActivity" />
-        <activity android:name=".EmotionModeSelectActivity" />
-        <activity android:name=".EmotionPracticeActivity" />
+        <activity android:name=".ActivityA.EmotionQuizActivity" />
+        <activity android:name=".ActivityA.EmotionModeSelectActivity" />
+        <activity android:name=".ActivityA.EmotionPracticeActivity" />
         <activity android:name=".ActivityB.YourFace1Activity" />
         <activity android:name=".ActivityC.MyFaceActivity" />
         <activity android:name=".ActivityC.MyFace1Activity" />
