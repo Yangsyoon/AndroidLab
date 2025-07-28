@@ -4,21 +4,66 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="12dp"
     android:gravity="center_horizontal">
 
-    <!-- 문제 이미지 (화면 상단 2/3 차지) -->
-    <ImageView
-        android:id="@+id/image_question"
+    <TextView
+        android:id="@+id/text_question_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 / 10"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginBottom="8dp" />
+
+    <!-- 문제 이미지 + 결과 아이콘 + 정답 메시지 겹치기 위해 FrameLayout 사용 -->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:scaleType="centerCrop"
-        android:contentDescription="문제 이미지"
-        android:src="@drawable/test_surprised_sample1" />
+        android:layout_weight="1.6">
+        <!-- 문제 이미지 -->
+        <ImageView
+            android:id="@+id/image_question"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:contentDescription="문제 이미지"
+            android:src="@drawable/test_surprised_sample1" />
+    <!-- 정답/오답 결과 표시 영역: 이미지 위에 겹쳐 표시 -->
+    <LinearLayout
+        android:id="@+id/result_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="8dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="12dp"
+        android:background="#AAFFFFFF"
+        android:visibility="gone">
+
+    <ImageView
+        android:id="@+id/image_result_icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:contentDescription="결과 아이콘" />
+
+    <TextView
+        android:id="@+id/text_result_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginStart="12dp" />
+    </LinearLayout>
+
+    </FrameLayout>
 
     <!-- 감정 버튼 영역 (2x2 배치) -->
     <GridLayout
+        android:id="@+id/grid_emotion_buttons"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -32,7 +77,7 @@
         <!-- 기쁨 -->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:layout_margin="8dp"
@@ -62,10 +107,11 @@
         <!-- 슬픔 -->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/button_bg"
@@ -75,8 +121,8 @@
             android:tag="슬픔">
 
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:src="@drawable/sad_icon"
                 android:contentDescription="슬픔 이미지" />
 
@@ -84,15 +130,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="슬픔"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="2dp" />
         </LinearLayout>
 
         <!-- 화남 -->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:layout_margin="8dp"
@@ -122,7 +168,7 @@
         <!-- 놀람 -->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:layout_margin="8dp"
@@ -148,15 +194,14 @@
                 android:textColor="@android:color/black"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
-
     </GridLayout>
 
-    <!-- 다음 버튼 -->
+    <!-- 정답 확인 버튼 -->
     <Button
-        android:id="@+id/btn_next"
+        android:id="@+id/btn_check_answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="다음 문제"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="16dp"/>
+        android:text="정답 확인"
+        android:layout_marginTop="12dp" />음
+
 </LinearLayout>
