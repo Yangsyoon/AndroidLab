@@ -60,6 +60,7 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:1.4.2")
     implementation("androidx.camera:camera-view:1.4.2")
     implementation("androidx.camera:camera-extensions:1.4.2")
+    implementation("com.google.guava:guava:32.1.2-android")
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.room.ktx)

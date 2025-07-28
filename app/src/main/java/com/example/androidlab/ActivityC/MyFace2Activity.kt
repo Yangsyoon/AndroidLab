@@ -1,12 +1,17 @@
 package com.example.androidlab.ActivityC
 
+import android.Manifest
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -16,18 +21,14 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import com.example.androidlab.R
-import java.io.File
-import android.Manifest
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.net.Uri
 import org.tensorflow.lite.Interpreter
+import java.io.File
 import java.io.FileInputStream
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
+
 
 class MyFace2Activity : AppCompatActivity() {
     private lateinit var previewView: PreviewView
@@ -37,7 +38,7 @@ class MyFace2Activity : AppCompatActivity() {
     private lateinit var answer_emotionList: ArrayList<String>
     private lateinit var my_emotionList: ArrayList<String>
 
-    private val emotionLabels = listOf("분노", "혐오", "두려움", "기쁨", "슬픔", "놀람", "무표정")
+    private val emotionLabels = listOf("분노", "기쁨", "무표정", "슬픔", "놀람")
     private lateinit var interpreter: Interpreter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +48,7 @@ class MyFace2Activity : AppCompatActivity() {
         answer_emotionList = intent.getStringArrayListExtra("answer_emotionList") ?: arrayListOf()
         my_emotionList = intent.getStringArrayListExtra("my_emotionList") ?: arrayListOf()
 
-        interpreter = Interpreter(loadModelFile(this, "emotion_model.tflite"))
+        interpreter = Interpreter(loadModelFile(this, "best_mobilevit.tflite"))
 
 
         previewView = findViewById(R.id.previewView)
@@ -138,11 +139,11 @@ class MyFace2Activity : AppCompatActivity() {
     }
 
     private fun preprocessBitmap(bitmap: Bitmap): Array<Array<Array<FloatArray>>> {
-        val resized = Bitmap.createScaledBitmap(bitmap, 64, 64, true)
-        val result = Array(1) { Array(64) { Array(64) { FloatArray(3) } } }
+        val resized = Bitmap.createScaledBitmap(bitmap, 128, 128, true)
+        val result = Array(1) { Array(128) { Array(128) { FloatArray(3) } } }
 
-        for (y in 0 until 64) {
-            for (x in 0 until 64) {
+        for (y in 0 until 128) {
+            for (x in 0 until 128) {
                 val pixel = resized.getPixel(x, y)
                 result[0][y][x][0] = Color.red(pixel) / 255f
                 result[0][y][x][1] = Color.green(pixel) / 255f
