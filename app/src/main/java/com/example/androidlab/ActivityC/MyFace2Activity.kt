@@ -110,7 +110,7 @@ class MyFace2Activity : AppCompatActivity() {
 
                     val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(photoUri))
                     val input = preprocessBitmap(bitmap)
-                    val output = Array(1) { FloatArray(7) }
+                    val output = Array(1) { FloatArray(5) }
 
                     interpreter.run(input, output)
 
