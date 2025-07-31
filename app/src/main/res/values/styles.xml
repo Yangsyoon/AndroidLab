@@ -1,0 +1,9 @@
+<!-- res/values/styles.xml -->
+<resources>
+
+    <!-- 앱 테마 정의 -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 기본 색상 정의 등 필요하면 추가 -->
+    </style>
+
+</resources>
