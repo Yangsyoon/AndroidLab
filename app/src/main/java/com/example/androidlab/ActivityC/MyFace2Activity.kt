@@ -48,7 +48,7 @@ class MyFace2Activity : AppCompatActivity() {
         answer_emotionList = intent.getStringArrayListExtra("answer_emotionList") ?: arrayListOf()
         my_emotionList = intent.getStringArrayListExtra("my_emotionList") ?: arrayListOf()
 
-        interpreter = Interpreter(loadModelFile(this, "best_mobilevit.tflite"))
+        interpreter = Interpreter(loadModelFile(this, "resnet18_custom.tflite"))
 
 
         previewView = findViewById(R.id.previewView)
@@ -139,17 +139,23 @@ class MyFace2Activity : AppCompatActivity() {
     }
 
     private fun preprocessBitmap(bitmap: Bitmap): Array<Array<Array<FloatArray>>> {
-        val resized = Bitmap.createScaledBitmap(bitmap, 128, 128, true)
-        val result = Array(1) { Array(128) { Array(128) { FloatArray(3) } } }
+        val resized = Bitmap.createScaledBitmap(bitmap, 256, 256, true)
 
-        for (y in 0 until 128) {
-            for (x in 0 until 128) {
+        // [1][3][128][128]
+        val input = Array(1) { Array(3) { Array(256) { FloatArray(256) } } }
+
+        for (y in 0 until 256) {
+            for (x in 0 until 256) {
                 val pixel = resized.getPixel(x, y)
-                result[0][y][x][0] = Color.red(pixel) / 255f
-                result[0][y][x][1] = Color.green(pixel) / 255f
-                result[0][y][x][2] = Color.blue(pixel) / 255f
+
+                // channel-first: [1][C][H][W]
+                input[0][0][y][x] = Color.red(pixel) / 255f   // R
+                input[0][1][y][x] = Color.green(pixel) / 255f // G
+                input[0][2][y][x] = Color.blue(pixel) / 255f  // B
             }
         }
-        return result
+
+        return input
     }
+
 }
