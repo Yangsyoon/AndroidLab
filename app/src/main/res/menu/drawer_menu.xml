@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_guide"
+        android:title="앱 사용 가이드"
+        android:icon="@drawable/ic_manual" />
+    <item
+        android:id="@+id/nav_settings"
+        android:title="설정"
+        android:icon="@drawable/ic_settings" />
+</menu>

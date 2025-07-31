@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/guide_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="앱 사용법 안내"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/guide_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이 앱은 사용자의 표정을 인식하고 감정을 판단하여 도와주는 도구입니다. 아래 기능들을 활용해보세요:\n\n• 감정 탐지: 사진을 찍거나 카메라로 얼굴을 인식해 감정을 분석합니다.\n• 감정 연습: 다양한 감정의 표정을 연습해볼 수 있습니다.\n• 보호자 모드: 보호자가 앱 사용을 관리하고 설정을 조절할 수 있습니다."
+            android:textSize="16sp"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="확인"
+            android:layout_marginTop="32dp" />
+    </LinearLayout>
+</ScrollView>

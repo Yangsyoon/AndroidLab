@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [MyFaceScore::class], version = 1)
+@Database(entities = [MyFaceScore::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class MyFaceScoreDatabase : RoomDatabase() {
     abstract fun myFaceScoreDAO(): MyFaceScoreDAO

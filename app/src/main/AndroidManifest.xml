@@ -28,6 +28,9 @@
         <activity android:name=".ActivityD.MyFaceScoreActivity" />
         <activity android:name=".ActivityD.TestScoreActivity" />
         <activity android:name=".ActivityD.MyRecordActivity" />
+        <activity android:name=".Guardian.SettingsActivity" />
+        <activity android:name=".Guardian.GuideActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
