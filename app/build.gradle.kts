@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -64,6 +66,9 @@ dependencies {
     implementation("androidx.camera:camera-view:1.4.2")
     implementation("androidx.camera:camera-extensions:1.4.2")
     implementation("com.google.guava:guava:32.1.2-android")
+
+    implementation("com.google.mlkit:face-detection:16.1.7")
+
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.room.ktx)
