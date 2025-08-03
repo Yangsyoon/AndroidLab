@@ -20,7 +20,6 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import com.example.androidlab.R
 import org.tensorflow.lite.Interpreter
 import java.io.ByteArrayOutputStream
@@ -54,7 +53,7 @@ class YourFace1Activity : AppCompatActivity() {
         previewView = findViewById(R.id.previewView)
         emotionText = findViewById(R.id.emotionTextView)
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        interpreter = Interpreter(loadModelFile(this, "emotion_model.tflite"))
+        interpreter = Interpreter(loadModelFile(this, "best.tflite"))
 
         startCamera()
     }

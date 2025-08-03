@@ -65,11 +65,16 @@ dependencies {
     implementation("androidx.camera:camera-extensions:1.4.2")
     implementation("com.google.guava:guava:32.1.2-android")
 
+    implementation ("androidx.media3:media3-exoplayer:1.3.1")
+    implementation ("androidx.media3:media3-ui:1.3.1")
+
     implementation(libs.kotlin.stdlib)
     implementation(libs.room.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
 
 }
