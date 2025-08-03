@@ -17,11 +17,7 @@ data class MyFaceScore(
     val emotion4Correct: Int,
     val emotion4Wrong: Int,
     val emotion5Correct: Int,
-    val emotion5Wrong: Int,
-    val emotion6Correct: Int,
-    val emotion6Wrong: Int,
-    val emotion7Correct: Int,
-    val emotion7Wrong: Int
+    val emotion5Wrong: Int
 
 
 )

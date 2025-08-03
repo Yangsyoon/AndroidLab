@@ -18,7 +18,7 @@ class MyFace4Activity : AppCompatActivity() {
     private lateinit var answer_emotionList: ArrayList<String>
     private lateinit var my_emotionList: ArrayList<String>
 
-    private val emotionLabels = listOf("분노", "혐오", "두려움", "기쁨", "슬픔", "놀람", "무표정")
+    private val emotionLabels = listOf("분노", "기쁨", "무표정", "슬픔", "놀람")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,11 +65,7 @@ class MyFace4Activity : AppCompatActivity() {
                 emotion4Correct = correctCounts[3],
                 emotion4Wrong = wrongCounts[3],
                 emotion5Correct = correctCounts[4],
-                emotion5Wrong = wrongCounts[4],
-                emotion6Correct = correctCounts[5],
-                emotion6Wrong = wrongCounts[5],
-                emotion7Correct = correctCounts[6],
-                emotion7Wrong = wrongCounts[6]
+                emotion5Wrong = wrongCounts[4]
             )
 
             dao.insert(score)

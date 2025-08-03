@@ -20,6 +20,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -53,6 +57,7 @@ dependencies {
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     implementation(libs.room.runtime)
+    implementation(libs.androidx.drawerlayout)
     kapt(libs.room.compiler)
 
     implementation("androidx.camera:camera-core:1.4.2")
@@ -60,6 +65,10 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:1.4.2")
     implementation("androidx.camera:camera-view:1.4.2")
     implementation("androidx.camera:camera-extensions:1.4.2")
+    implementation("com.google.guava:guava:32.1.2-android")
+
+    implementation("com.google.mlkit:face-detection:16.1.7")
+
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.room.ktx)

@@ -8,7 +8,7 @@ import com.example.androidlab.R
 
 class MyFaceActivity : AppCompatActivity() {
 
-    private val emotionLabels = listOf("분노", "혐오", "두려움", "기쁨", "슬픔", "놀람", "무표정")
+    private val emotionLabels = listOf("분노", "기쁨", "무표정", "슬픔", "놀람")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_face)

@@ -29,7 +29,7 @@ class MyFaceScoreListFragment : Fragment(R.layout.fragment_my_face_score_list) {
     private lateinit var adapter: MyFaceScoreAdapter
     private val viewModel: MyFaceScoreViewModel by activityViewModels()  // 공유 ViewModel
 
-    private val emotionLabels = listOf("분노", "혐오", "두려움", "기쁨", "슬픔", "놀람", "무표정")
+    private val emotionLabels = listOf("분노", "기쁨", "무표정", "슬픔", "놀람")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -65,8 +65,8 @@ class MyFaceScoreListFragment : Fragment(R.layout.fragment_my_face_score_list) {
         dialog.show()
     }
     private fun drawHorizontalBarChart(chart: BarChart, score: MyFaceScore) {
-        val corrects = listOf(score.emotion1Correct, score.emotion2Correct, score.emotion3Correct, score.emotion4Correct, score.emotion5Correct, score.emotion6Correct, score.emotion7Correct)
-        val wrongs = listOf(score.emotion1Wrong, score.emotion2Wrong, score.emotion3Wrong, score.emotion4Wrong, score.emotion5Wrong, score.emotion6Wrong, score.emotion7Wrong)
+        val corrects = listOf(score.emotion1Correct, score.emotion2Correct, score.emotion3Correct, score.emotion4Correct, score.emotion5Correct)
+        val wrongs = listOf(score.emotion1Wrong, score.emotion2Wrong, score.emotion3Wrong, score.emotion4Wrong, score.emotion5Wrong)
 
         val entries = corrects.indices.map { i ->
             BarEntry(i.toFloat(), floatArrayOf(corrects[i].toFloat(), wrongs[i].toFloat()))
