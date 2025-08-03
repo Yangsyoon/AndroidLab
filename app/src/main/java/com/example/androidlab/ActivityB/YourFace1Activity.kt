@@ -148,7 +148,10 @@ class YourFace1Activity : AppCompatActivity() {
 
                     cropFaceFromBitmap(rotatedBitmap) { faceBitmap ->
                         if (faceBitmap != null) {
-                            faceThumbnail.setImageBitmap(faceBitmap)
+                            if (::faceThumbnail.isInitialized) {
+                                faceThumbnail.setImageBitmap(faceBitmap)
+                            }
+
 
                             val input = preprocessBitmap(faceBitmap)
                             val output = Array(1) { FloatArray(5) }
