@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -65,8 +67,8 @@ dependencies {
     implementation("androidx.camera:camera-extensions:1.4.2")
     implementation("com.google.guava:guava:32.1.2-android")
 
-    implementation ("androidx.media3:media3-exoplayer:1.3.1")
-    implementation ("androidx.media3:media3-ui:1.3.1")
+    implementation("com.google.mlkit:face-detection:16.1.7")
+
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.room.ktx)
@@ -74,7 +76,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-
 
 }
