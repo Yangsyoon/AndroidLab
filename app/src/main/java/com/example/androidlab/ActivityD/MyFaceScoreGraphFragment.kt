@@ -2,6 +2,7 @@ package com.example.androidlab.ActivityD
 
 
 import android.app.AlertDialog
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -64,13 +65,14 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
             Entry((startX + index) * spacing, final_score.toFloat())
         }
 
-        // ✅ DataSet 구성
         val lineDataSet = LineDataSet(entries, "").apply {
-            color = requireContext().getColor(R.color.teal_700)
+            color = Color.RED             // 선 색상
+            setCircleColor(Color.RED)     // 점 색상
             valueTextSize = 10f
             setDrawCircles(true)
             setDrawValues(true)
         }
+
 
         chart.data = LineData(lineDataSet)
 
@@ -100,16 +102,23 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
                 }
             }
         }
+        chart.axisLeft.apply {
+            axisMinimum = 0f
+            axisMaximum = 100f
+        }
+
 
         // ✅ 차트 시각 옵션
         chart.axisRight.isEnabled = false
         chart.description = Description().apply { text = "" }
-        chart.setTouchEnabled(true)
-        chart.isDragEnabled = true
-        chart.setScaleEnabled(true)
-        chart.setPinchZoom(true)
-        chart.setExtraOffsets(0f,0f,0f,40f)
 
+        chart.setTouchEnabled(true)
+        chart.isDragEnabled=true
+
+        chart.setScaleEnabled(false)   // ✅ 확대/축소 비활성화
+        chart.setPinchZoom(false)      // ✅ 줌 비활성화
+
+        chart.setExtraOffsets(0f, 0f, 0f, 40f)
         chart.setVisibleXRangeMaximum((totalVisiblePoints - 1) * spacing + 1) // ✅ 한 화면에 보이는 개수 제한
         chart.invalidate()
 
