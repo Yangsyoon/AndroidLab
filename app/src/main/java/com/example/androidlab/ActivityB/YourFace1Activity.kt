@@ -76,7 +76,7 @@ class YourFace1Activity : AppCompatActivity() {
         faceThumbnail = findViewById(R.id.faceThumbnail)
         emotionTextView = findViewById(R.id.emotionTextView)
 
-        interpreter = Interpreter(loadModelFile(this, "best.tflite"))
+        interpreter = Interpreter(loadModelFile(this, "efficientnet_b0.tflite"))
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED
