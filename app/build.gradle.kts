@@ -58,6 +58,7 @@ dependencies {
 
     implementation(libs.room.runtime)
     implementation(libs.androidx.drawerlayout)
+    implementation(libs.vision.common)
     kapt(libs.room.compiler)
 
     implementation("androidx.camera:camera-core:1.4.2")

@@ -1,11 +1,45 @@
 <!-- res/layout/activity_emotion_mode_select.xml -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/soft_green">
 
-    <!-- 감싸는 레이아웃: 전체 화면의 2/3 높이 -->
+    <LinearLayout
+        android:id="@+id/header_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/soft_green2"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp">
+
+    <ImageView
+        android:id="@+id/image_detective"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/detective"
+        android:contentDescription="@string/detective_image" />
+
+    <TextView
+        android:id="@+id/text_detective_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="나는 감정 탐정!"
+        android:textSize="22sp"
+        android:textColor="#000000"
+        android:layout_marginStart="12dp"
+        android:textStyle="bold" />
+
+</LinearLayout>
+
+
     <LinearLayout
         android:id="@+id/button_container"
         android:layout_width="0dp"
@@ -27,17 +61,17 @@
 
             <Button
                 android:id="@+id/button_practice"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="280dp"
+                android:layout_height="207dp"
+                android:background="@drawable/frame_5"
                 android:text="연습하기"
+                android:textColor="@android:color/black"
                 android:textSize="20sp"
-                android:textColor="@android:color/white"
-                android:background="#E65C00"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,17 +82,16 @@
 
             <Button
                 android:id="@+id/button_test"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="280dp"
+                android:layout_height="207dp"
+                android:background="@drawable/frame_5"
                 android:text="시험치기"
+                android:textColor="@android:color/black"
                 android:textSize="20sp"
-                android:textColor="@android:color/white"
-                android:background="#E65C00"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

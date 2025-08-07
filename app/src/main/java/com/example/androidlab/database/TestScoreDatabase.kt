@@ -21,7 +21,7 @@ abstract class TestScoreDatabase : RoomDatabase() {
                     context.applicationContext,
                     TestScoreDatabase::class.java,
                     "test_score_db"
-                )                    .build()
+                ).fallbackToDestructiveMigration(true).build()
                 INSTANCE = instance
                 instance
             }
