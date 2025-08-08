@@ -92,7 +92,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/happy_icon"
+                android:src="@drawable/happy_icon2"
                 android:contentDescription="기쁨 이미지" />
 
             <TextView
@@ -110,8 +110,7 @@
             android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_margin="4dp"
-            android:padding="4dp"
+            android:layout_margin="8dp"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/button_bg"
@@ -121,18 +120,18 @@
             android:tag="슬픔">
 
             <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/sad_icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/sad_icon2"
                 android:contentDescription="슬픔 이미지" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="슬픔"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColor="@android:color/black"
-                android:layout_marginTop="2dp" />
+                android:layout_marginTop="4dp" />
         </LinearLayout>
 
         <!-- 화남 -->
@@ -153,7 +152,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/angry_icon"
+                android:src="@drawable/angry_icon2"
                 android:contentDescription="화남 이미지" />
 
             <TextView
@@ -183,7 +182,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/surprised_icon"
+                android:src="@drawable/surprised_icon2"
                 android:contentDescription="놀람 이미지" />
 
             <TextView
@@ -202,6 +201,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="정답 확인"
-        android:layout_marginTop="12dp" />음
+        android:layout_marginTop="12dp" />
 
 </LinearLayout>
