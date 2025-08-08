@@ -15,6 +15,8 @@ data class TestScore(
     val emotion3Correct: Int,
     val emotion3Wrong: Int,
     val emotion4Correct: Int,
-    val emotion4Wrong: Int
+    val emotion4Wrong: Int,
+    val emotion5Correct: Int,
+    val emotion5Wrong: Int
 
 )

@@ -63,7 +63,7 @@ class MyFace2Activity : AppCompatActivity() {
         answer_emotionList = intent.getStringArrayListExtra("answer_emotionList") ?: arrayListOf()
         my_emotionList = intent.getStringArrayListExtra("my_emotionList") ?: arrayListOf()
 
-        interpreter = Interpreter(loadModelFile(this, "best.tflite"))
+        interpreter = Interpreter(loadModelFile(this, "efficientnet_b0.tflite"))
 
 
         previewView = findViewById(R.id.previewView)
@@ -171,13 +171,13 @@ class MyFace2Activity : AppCompatActivity() {
     }
 
     private fun preprocessBitmap(bitmap: Bitmap): Array<Array<Array<FloatArray>>> {
-        val resized = Bitmap.createScaledBitmap(bitmap, 256, 256, true)
+        val resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
 
         // [1][3][128][128]
-        val input = Array(1) { Array(3) { Array(256) { FloatArray(256) } } }
+        val input = Array(1) { Array(3) { Array(224) { FloatArray(224) } } }
 
-        for (y in 0 until 256) {
-            for (x in 0 until 256) {
+        for (y in 0 until 224) {
+            for (x in 0 until 224) {
                 val pixel = resized.getPixel(x, y)
 
                 // channel-first: [1][C][H][W]

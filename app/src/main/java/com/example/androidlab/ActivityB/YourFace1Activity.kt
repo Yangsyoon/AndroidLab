@@ -68,7 +68,7 @@ class YourFace1Activity : AppCompatActivity() {
         faceThumbnail = findViewById(R.id.faceThumbnail)
         emotionTextView = findViewById(R.id.emotionTextView)
 
-        interpreter = Interpreter(loadModelFile(this, "best.tflite"))
+        interpreter = Interpreter(loadModelFile(this, "efficientnet_b0.tflite"))
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED
@@ -140,7 +140,10 @@ class YourFace1Activity : AppCompatActivity() {
 
                     cropFaceFromBitmap(rotatedBitmap) { faceBitmap ->
                         if (faceBitmap != null) {
-                            faceThumbnail.setImageBitmap(faceBitmap)
+                            if (::faceThumbnail.isInitialized) {
+                                faceThumbnail.setImageBitmap(faceBitmap)
+                            }
+
 
                             val input = preprocessBitmap(faceBitmap)
                             val output = Array(1) { FloatArray(5) }

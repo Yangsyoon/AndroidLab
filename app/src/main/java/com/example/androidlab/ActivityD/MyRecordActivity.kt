@@ -72,7 +72,9 @@ class MyRecordActivity : AppCompatActivity() {
                 emotion3Correct = 50-i,
                 emotion3Wrong = 50+i,
                 emotion4Correct = 80-i,
-                emotion4Wrong = 20+i
+                emotion4Wrong = 20+i,
+                emotion5Correct = 90-i,
+                emotion5Wrong = 10+i
             )
         }
     }
