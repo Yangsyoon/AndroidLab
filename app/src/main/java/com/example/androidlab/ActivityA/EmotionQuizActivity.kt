@@ -30,6 +30,7 @@ class EmotionQuizActivity : AppCompatActivity() {
     private var currentIndex = 0
     private lateinit var imageView: ImageView
     private lateinit var resultIcon: ImageView
+    private lateinit var resultContainer: LinearLayout
     private lateinit var resultText: TextView
     private lateinit var checkAnswerButton: Button
 
@@ -44,6 +45,7 @@ class EmotionQuizActivity : AppCompatActivity() {
 
         imageView = findViewById(R.id.image_question)
         resultIcon = findViewById(R.id.image_result_icon)
+        resultContainer = findViewById(R.id.result_container)
         resultText = findViewById(R.id.text_result_message)
         checkAnswerButton = findViewById(R.id.btn_check_answer)
 
@@ -135,11 +137,32 @@ class EmotionQuizActivity : AppCompatActivity() {
     private fun loadQuestion() {
         val question = questionList[currentIndex]
         imageView.setImageResource(question.imageResId)
-        resultIcon.visibility = View.GONE
-        resultText.visibility = View.GONE
+
+        // 결과 컨테이너 완전 초기화
+        resultContainer.apply {
+            visibility = View.GONE
+            alpha = 1f
+            animate().cancel()  // 혹시 애니메이션 중단
+        }
+
+        resultIcon.apply {
+            setImageDrawable(null)
+            visibility = View.GONE
+            alpha = 1f
+            animate().cancel()
+        }
+
+        resultText.apply {
+            text = ""
+            visibility = View.GONE
+            alpha = 1f
+            animate().cancel()
+        }
+
         selectedEmotion = null
         isAnswerRevealed = false
     }
+
 
 
     private fun goToNextQuestion() {

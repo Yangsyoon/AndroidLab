@@ -66,6 +66,6 @@ class EmotionPracticeActivity : AppCompatActivity() {
     private fun showCurrentEmotion() {
         val (imageRes, answer) = emotionImages[currentIndex]
         imageView.setImageResource(imageRes)
-        answerText.text = "감정: $answer"
+        answerText.text = "정답: $answer"
     }
 }

@@ -152,12 +152,12 @@ class YourFace1Activity : AppCompatActivity() {
                             val maxIdx = output[0].indices.maxByOrNull { output[0][it] } ?: 0
                             val emotion = emotionLabels[maxIdx]
 
-                            emotionTextView.text = "감정: $emotion"
+                            emotionTextView.text = "정답: $emotion"
                             vibrate(emotion)
                         } else {
                             // 얼굴 인식 실패한 경우
                             faceThumbnail.setImageDrawable(null)
-                            emotionTextView.text = "감정: -"
+                            emotionTextView.text = "인식 실패"
                         }
                     }
 

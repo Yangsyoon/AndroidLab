@@ -1,65 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
     android:gravity="center_horizontal">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_detective"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/detective_bg"
+        android:text="시험 모드"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <!-- 문제 이미지 + 결과 아이콘 + 정답 메시지 겹치기 위해 FrameLayout 사용 -->
+    <!-- 문제 이미지 + 정답 결과 오버레이 표시 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.6">
+
+        <!-- 이미지 프레임 (액자 효과) -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/frame_softgreen2_border"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/image_question"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="문제 이미지"
+                android:src="@drawable/test_surprised_sample1" />
+        </FrameLayout>
+
+        <!-- 정답 결과 오버레이 카드 -->
+        <LinearLayout
+            android:id="@+id/result_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp"
+            android:layout_gravity="center"
+            android:layout_margin="24dp"
+            android:background="@drawable/bg_result_card"
+            android:visibility="gone"
+            android:elevation="10dp">
+
+            <ImageView
+                android:id="@+id/image_result_icon"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:contentDescription="정답 아이콘" />
+
+            <TextView
+                android:id="@+id/text_result_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="정답은 기쁨입니다!"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp" />
+        </LinearLayout>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/text_question_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1 / 10"
+        android:text="1 / 10  문제"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#333333"
-        android:layout_marginBottom="8dp" />
-
-    <!-- 문제 이미지 + 결과 아이콘 + 정답 메시지 겹치기 위해 FrameLayout 사용 -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.6">
-        <!-- 문제 이미지 -->
-        <ImageView
-            android:id="@+id/image_question"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:contentDescription="문제 이미지"
-            android:src="@drawable/test_surprised_sample1" />
-    <!-- 정답/오답 결과 표시 영역: 이미지 위에 겹쳐 표시 -->
-    <LinearLayout
-        android:id="@+id/result_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="8dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="12dp"
-        android:background="#AAFFFFFF"
-        android:visibility="gone">
-
-    <ImageView
-        android:id="@+id/image_result_icon"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:contentDescription="결과 아이콘" />
-
-    <TextView
-        android:id="@+id/text_result_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_marginStart="12dp" />
-    </LinearLayout>
-
-    </FrameLayout>
+        android:layout_marginBottom="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- 감정 버튼 영역 (2x2 배치) -->
     <GridLayout
@@ -202,6 +228,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="정답 확인"
-        android:layout_marginTop="12dp" />음
+        android:layout_marginTop="12dp" />
 
 </LinearLayout>
