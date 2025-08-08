@@ -23,51 +23,87 @@
 
         <!-- 버튼들을 담은 콘텐츠 레이아웃 -->
         <LinearLayout
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"> <!-- 툴바 아래로 내리기 -->
+            android:layout_marginTop="?attr/actionBarSize"
+            android:gravity="bottom|center"
+            android:orientation="vertical"
+            android:padding="24dp"> <!-- 툴바 아래로 내리기 -->
+            <!-- 이미지 카드 + 환영 문구 -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="8dp">
+
+                <!-- 카드 배경 이미지 -->
+                <ImageView
+                    android:id="@+id/welcome_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/welcome_card" />
+
+                <!-- 겹치는 텍스트 (하얀 공간에 맞춰 배치) -->
+                <TextView
+                    android:id="@+id/welcome_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="165dp"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginEnd="15dp"
+                    android:gravity="center"
+                    android:lineSpacingExtra="4dp"
+                    android:maxLines="3"
+                    android:text="승호야!\n 만나서 반가워!\n오늘도 같이 놀자!"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+            </FrameLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_detective"
-                android:text="나는 감정 탐정!"
-                android:textColor="@android:color/black"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/frame_5" />
+                android:background="@drawable/detective_bg"
+                android:text="나는 감정 탐정!"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <!-- 나머지 버튼들도 동일하게 -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnB"
-                android:text="속마음 알아보기"
-                android:textColor="@android:color/black"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/frame_5" />
+                android:background="@drawable/deepmind_bg"
+                android:text="속마음 알아보기"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnC"
-                android:text="표정 짓기 게임"
-                android:textColor="@android:color/black"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/frame_5" />
+                android:background="@drawable/facial_bg"
+                android:text="표정 짓기 게임"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnD"
-                android:text="내 기록 보기"
-                android:textColor="@android:color/black"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
-                android:background="@drawable/frame_5" />
+                android:background="@drawable/score_bg"
+                android:text="내 기록 보기"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
         </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
     <!-- 우측에서 열리는 네비게이션 뷰 -->
     <com.google.android.material.navigation.NavigationView
@@ -79,3 +115,5 @@
         app:menu="@menu/drawer_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
+
+
