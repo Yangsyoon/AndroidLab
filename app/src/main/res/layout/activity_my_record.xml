@@ -27,13 +27,14 @@
             android:id="@+id/score_board_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="178dp"
-            android:layout_marginTop="42dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginStart="195dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginEnd="26dp"
             android:gravity="center"
             android:lineSpacingExtra="4dp"
             android:maxLines="3"
             android:text="승호의\n 최근점수야!"
+            android:fontFamily="sans-serif-medium"
             android:textColor="@android:color/black"
             android:textSize="28sp" />
 
@@ -48,6 +49,7 @@
             android:lineSpacingExtra="4dp"
             android:maxLines="3"
             android:text="100점"
+            android:fontFamily="sans-serif-medium"
             android:textColor="@android:color/black"
             android:textSize="28sp" />
         <TextView
@@ -61,6 +63,7 @@
             android:lineSpacingExtra="4dp"
             android:maxLines="3"
             android:text="80점"
+            android:fontFamily="sans-serif-medium"
             android:textColor="@android:color/black"
             android:textSize="28sp" />
     </FrameLayout>
