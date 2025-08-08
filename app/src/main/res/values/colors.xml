@@ -6,5 +6,7 @@
     <color name="teal_700">#018786</color>
     <color name="blue">#2196F3</color>
     <color name="red">#F44336</color>
-
+    <color name="soft_green">#EDEFE4</color>
+    <color name="soft_green2">#DBEA8D</color>
+    <color name="soft_yellow">#F6F3D4</color>
 </resources>

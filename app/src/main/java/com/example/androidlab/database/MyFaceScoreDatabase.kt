@@ -18,10 +18,10 @@ abstract class MyFaceScoreDatabase : RoomDatabase() {
         fun getInstance(context: Context): MyFaceScoreDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    MyFaceScoreDatabase::class.java,
-                    "my_face_score_db"
-                ).build()
+                                context.applicationContext,
+                                MyFaceScoreDatabase::class.java,
+                                "my_face_score_db"
+                            ).fallbackToDestructiveMigration(true).build()
                 INSTANCE = instance
                 instance
             }

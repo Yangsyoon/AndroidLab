@@ -1,0 +1,7 @@
+<!-- res/drawable/frame_5.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="@color/soft_yellow" />
+    <corners android:radius="12dp" /> <!-- 모서리 둥글게, 필요시 -->
+</shape>
