@@ -64,10 +64,33 @@ class TestScoreGraphFragment : Fragment(R.layout.fragment_test_score_graph) {
 
         // ✅ DataSet 구성
         val lineDataSet = LineDataSet(entries, "").apply {
+            /*
             color = requireContext().getColor(R.color.teal_700)
             valueTextSize = 10f
             setDrawCircles(true)
             setDrawValues(true)
+            */
+            // ▶︎ 라인/포인트를 굵고 선명하게
+            lineWidth = 3.5f
+            setDrawCircles(true)
+            circleRadius = 4.5f
+            setDrawCircleHole(false)
+
+            // ▶︎ 배경 이미지 위에서도 잘 보이도록 높은 대비 색상(필요시 변경)
+            val fg = requireContext().getColor(android.R.color.holo_green_dark)
+            color = fg
+            setCircleColor(fg)
+            valueTextColor = fg
+            valueTextSize = 11f
+
+            // ▶︎ 부드러운 곡선 + 채움(투명도)
+            mode = LineDataSet.Mode.CUBIC_BEZIER
+            setDrawFilled(true)
+            fillColor = fg
+            fillAlpha = 150   // 0~255
+
+            // 하이라이트(선택 시) 색상
+            highLightColor = requireContext().getColor(android.R.color.holo_orange_light)
         }
 
         chart.data = LineData(lineDataSet)
