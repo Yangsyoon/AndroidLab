@@ -19,6 +19,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="4dp"
-        android:src="@drawable/farewell_card"
+        android:src="@drawable/farewell_card2"
         android:scaleType="centerCrop" />
 </LinearLayout>
