@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/soft_green2"
-        android:padding="12dp"
         android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +22,8 @@
             android:id="@+id/image_detective"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/detective"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/detective_cat2"
             android:contentDescription="@string/detective_image" />
 
         <TextView
