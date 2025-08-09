@@ -61,8 +61,8 @@
 
             <FrameLayout
                 android:id="@+id/button_practice"
-                android:layout_width="280dp"
-                android:layout_height="207dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
@@ -74,7 +74,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/detective_practice_bg"
+                    android:src="@drawable/detective_practice_bg4"
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true" />
 
@@ -98,8 +98,8 @@
 
             <FrameLayout
                 android:id="@+id/button_test"
-                android:layout_width="280dp"
-                android:layout_height="207dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
@@ -111,7 +111,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/detective_test_bg"
+                    android:src="@drawable/detective_test_bg3"
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true" />
 

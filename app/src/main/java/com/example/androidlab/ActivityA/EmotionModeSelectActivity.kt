@@ -2,8 +2,8 @@ package com.example.androidlab.ActivityA
 // EmotionModeSelectActivity.kt
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidlab.R
 
@@ -13,8 +13,8 @@ class EmotionModeSelectActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emotion_mode_select)
 
-        val practiceButton = findViewById<FrameLayout>(R.id.button_practice)
-        val testButton = findViewById<FrameLayout>(R.id.button_test)
+        val practiceButton: View = findViewById(R.id.button_practice)
+        val testButton: View = findViewById(R.id.button_test)
 
         practiceButton.setOnClickListener {
             val intent = Intent(this, EmotionPracticeActivity::class.java)
