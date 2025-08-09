@@ -28,13 +28,12 @@
             android:layout_marginTop="?attr/actionBarSize"
             android:gravity="bottom|center"
             android:orientation="vertical"
-            android:padding="24dp"> <!-- 툴바 아래로 내리기 -->
+            android:padding="30dp"> <!-- 툴바 아래로 내리기 -->
             <!-- 이미지 카드 + 환영 문구 -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginBottom="16dp">
 
                 <!-- 카드 배경 이미지 -->
                 <ImageView
@@ -50,47 +49,48 @@
                     android:id="@+id/welcome_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="165dp"
-                    android:layout_marginTop="23dp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="158dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginEnd="10dp"
                     android:gravity="center"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="3"
                     android:text="승호야!\n 만나서 반가워!\n오늘도 같이 놀자!"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="22sp" />
             </FrameLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_detective"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/detective_bg"
                 android:text="나는 감정 탐정!"
                 android:textColor="@android:color/black"
-                android:textSize="20sp" />
+                android:textSize="24sp" />
 
             <!-- 나머지 버튼들도 동일하게 -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnB"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/deepmind_bg"
                 android:text="속마음 알아보기"
                 android:textColor="@android:color/black"
-                android:textSize="20sp" />
+                android:textSize="24sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnC"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/facial_bg"
-                android:text="표정 짓기 게임"
+                android:text="표정 지어 보기"
                 android:textColor="@android:color/black"
-                android:textSize="20sp" />
+                android:textSize="24sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnD"
@@ -99,7 +99,7 @@
                 android:background="@drawable/score_bg"
                 android:text="내 기록 보기"
                 android:textColor="@android:color/black"
-                android:textSize="20sp" />
+                android:textSize="24sp" />
 
         </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

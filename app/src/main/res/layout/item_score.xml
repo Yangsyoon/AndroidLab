@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#DDDDDD"
+    android:background="@drawable/item_card4"
     android:layout_margin="10dp"
     android:padding="10dp">
 
@@ -13,6 +13,8 @@
         android:text="2025-07-18"
         android:textSize="25sp"
         android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:fontFamily="sans-serif-medium"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -27,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="총합: 100 점"
+        android:textColor="@android:color/black"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
