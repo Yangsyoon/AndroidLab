@@ -14,8 +14,11 @@ import com.example.androidlab.ActivityB.YourFace1Activity
 import com.example.androidlab.ActivityC.MyFaceActivity
 import com.example.androidlab.ActivityD.MyRecordActivity
 import com.example.androidlab.Guardian.GuideActivity
+import com.example.androidlab.Guardian.HapticEditorActivity
+import com.example.androidlab.Guardian.HapticOverviewActivity
 import com.example.androidlab.Guardian.SettingsActivity
 import com.google.android.material.navigation.NavigationView
+import kotlin.jvm.java
 
 
 class MainActivity : AppCompatActivity() {
@@ -73,6 +76,16 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_settings -> {
                     startActivity(Intent(this, SettingsActivity::class.java))
+                    drawerLayout.closeDrawers()
+                    true
+                }
+                R.id.haptic_settings -> {
+                    startActivity(Intent(this, HapticEditorActivity::class.java))
+                    drawerLayout.closeDrawers()
+                    true
+                }
+                R.id.haptic_overview -> {
+                    startActivity(Intent(this, HapticOverviewActivity::class.java))
                     drawerLayout.closeDrawers()
                     true
                 }

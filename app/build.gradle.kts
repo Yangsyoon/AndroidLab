@@ -70,7 +70,7 @@ dependencies {
 
     implementation("com.google.mlkit:face-detection:16.1.7")
 
-
+    implementation("io.github.ShawnLin013:number-picker:2.4.13")
     implementation(libs.kotlin.stdlib)
     implementation(libs.room.ktx)
 

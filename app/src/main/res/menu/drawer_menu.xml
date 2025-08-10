@@ -4,6 +4,14 @@
         android:title="앱 사용 가이드"
         android:icon="@drawable/ic_manual" />
     <item
+        android:id="@+id/haptic_settings"
+        android:title="진동 커스텀"
+        android:icon="@drawable/ic_vibrate" />
+    <item
+        android:id="@+id/haptic_overview"
+        android:title="현재 진동 상태"
+        android:icon="@drawable/ic_haptic" />
+    <item
         android:id="@+id/nav_settings"
         android:title="설정"
         android:icon="@drawable/ic_settings" />

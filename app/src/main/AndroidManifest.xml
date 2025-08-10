@@ -30,6 +30,8 @@
         <activity android:name=".ActivityD.MyRecordActivity" />
         <activity android:name=".Guardian.SettingsActivity" />
         <activity android:name=".Guardian.GuideActivity" />
+        <activity android:name=".Guardian.HapticEditorActivity" />
+        <activity android:name=".Guardian.HapticOverviewActivity" />
 
         <activity
             android:name=".MainActivity"
