@@ -35,12 +35,12 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
     private val viewModel: MyFaceScoreViewModel by activityViewModels()
     private lateinit var lineChart: LineChart
 
-    private val emotionLabels = listOf("분노", "기쁨", "무표정", "슬픔", "놀람")
+    private val emotionLabels = listOf("화남", "기쁨", "무표정", "놀람","슬픔")
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lineChart = view.findViewById(R.id.testScoreChart)
+        lineChart = view.findViewById(R.id.faceScoreChart)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.faceScores.collectLatest { scores ->

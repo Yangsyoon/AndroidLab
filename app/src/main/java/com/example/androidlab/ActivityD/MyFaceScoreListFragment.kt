@@ -29,7 +29,7 @@ class MyFaceScoreListFragment : Fragment(R.layout.fragment_my_face_score_list) {
     private lateinit var adapter: MyFaceScoreAdapter
     private val viewModel: MyFaceScoreViewModel by activityViewModels()  // 공유 ViewModel
 
-    private val emotionLabels = listOf("분노", "기쁨", "무표정", "슬픔", "놀람")
+    private val emotionLabels = listOf("화남", "기쁨", "무표정", "놀람","슬픔")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

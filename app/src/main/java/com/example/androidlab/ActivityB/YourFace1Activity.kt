@@ -44,7 +44,7 @@ class YourFace1Activity : AppCompatActivity() {
     private lateinit var faceThumbnail: ImageView
     private lateinit var emotionTextView: TextView
 
-    private val emotionLabels = listOf("분노", "기쁨", "무표정", "슬픔", "놀람")
+    private val emotionLabels = listOf("화남", "기쁨", "무표정", "놀람","슬픔")
     private val vibrationPatterns = mapOf(
         "기쁨" to longArrayOf(0, 100, 50, 100),
         "슬픔" to longArrayOf(0, 300),
@@ -68,7 +68,7 @@ class YourFace1Activity : AppCompatActivity() {
         faceThumbnail = findViewById(R.id.faceThumbnail)
         emotionTextView = findViewById(R.id.emotionTextView)
 
-        interpreter = Interpreter(loadModelFile(this, "efficientnet_b0.tflite"))
+        interpreter = Interpreter(loadModelFile(this, "best_efficientnet_b0_emotion.tflite"))
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED
@@ -109,7 +109,7 @@ class YourFace1Activity : AppCompatActivity() {
 
 
             // ✅ 줌 배율 0.5배 설정
-            camera.cameraControl.setZoomRatio(0.6f)
+            camera.cameraControl.setZoomRatio(1f)
 
             startPeriodicCapture()
         }, ContextCompat.getMainExecutor(this))
@@ -143,7 +143,7 @@ class YourFace1Activity : AppCompatActivity() {
                             if (::faceThumbnail.isInitialized) {
                                 faceThumbnail.setImageBitmap(faceBitmap)
                             }
-
+                            
 
                             val input = preprocessBitmap(faceBitmap)
                             val output = Array(1) { FloatArray(5) }
@@ -187,21 +187,36 @@ class YourFace1Activity : AppCompatActivity() {
 
 
     private fun preprocessBitmap(bitmap: Bitmap): Array<Array<Array<FloatArray>>> {
-        val resized = Bitmap.createScaledBitmap(bitmap, 256, 256, true)
+        val imsize = 256
+        val resized = Bitmap.createScaledBitmap(bitmap, imsize, imsize, true)
 
-        // [1][3][128][128]
-        val input = Array(1) { Array(3) { Array(256) { FloatArray(256) } } }
+        // 좌우반전 (원하면 주석 해제)
+        val matrix = Matrix().apply { postScale(-1f, 1f, imsize / 2f, imsize / 2f) }
+        val flipped = Bitmap.createBitmap(resized, 0, 0, imsize, imsize, matrix, true)
+        val processedBitmap = flipped.copy(Bitmap.Config.ARGB_8888, true)
 
-        for (y in 0 until 256) {
-            for (x in 0 until 256) {
-                val pixel = resized.getPixel(x, y)
+        // PyTorch 기준: mean/std 값
+        val mean = floatArrayOf(0.485f, 0.456f, 0.406f)
+        val std = floatArrayOf(0.229f, 0.224f, 0.225f)
 
-                // channel-first: [1][C][H][W]
-                input[0][0][y][x] = Color.red(pixel) / 255f   // R
-                input[0][1][y][x] = Color.green(pixel) / 255f // G
-                input[0][2][y][x] = Color.blue(pixel) / 255f  // B
+        val input = Array(1) { Array(3) { Array(imsize) { FloatArray(imsize) } } }
+
+        for (y in 0 until imsize) {
+            for (x in 0 until imsize) {
+                val pixel = processedBitmap.getPixel(x, y)
+
+                val r = Color.red(pixel) / 255f
+                val g = Color.green(pixel) / 255f
+                val b = Color.blue(pixel) / 255f
+
+
+                input[0][0][y][x] = (r - mean[0]) / std[0]  // R
+                input[0][1][y][x] = (g - mean[1]) / std[1]  // G
+                input[0][2][y][x] = (b - mean[2]) / std[2]  // B
             }
         }
+
+
 
         return input
     }
@@ -267,3 +282,5 @@ class YourFace1Activity : AppCompatActivity() {
         return input.channel.map(FileChannel.MapMode.READ_ONLY, fd.startOffset, fd.declaredLength)
     }
 }
+
+private fun ImageView.setImageBitmap(arrays: Array<Array<Array<FloatArray>>>) {}

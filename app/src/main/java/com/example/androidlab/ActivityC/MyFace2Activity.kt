@@ -50,7 +50,7 @@ class MyFace2Activity : AppCompatActivity() {
     private lateinit var capturedImageView: ImageView
 
 
-    private val emotionLabels = listOf("분노", "기쁨", "무표정", "슬픔", "놀람")
+    private val emotionLabels = listOf("화남", "기쁨", "무표정", "놀람","슬픔")
     private lateinit var interpreter: Interpreter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +63,7 @@ class MyFace2Activity : AppCompatActivity() {
         answer_emotionList = intent.getStringArrayListExtra("answer_emotionList") ?: arrayListOf()
         my_emotionList = intent.getStringArrayListExtra("my_emotionList") ?: arrayListOf()
 
-        interpreter = Interpreter(loadModelFile(this, "efficientnet_b0.tflite"))
+        interpreter = Interpreter(loadModelFile(this, "best_efficientnet_b0_emotion.tflite"))
 
 
         previewView = findViewById(R.id.previewView)
@@ -124,37 +124,38 @@ class MyFace2Activity : AppCompatActivity() {
                     val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(photoUri))
                     val correctedBitmap = rotateBitmapIfRequired(this@MyFace2Activity, bitmap, photoUri)
 
-                    cropFaceFromBitmap(correctedBitmap) { faceBitmap ->
-                        // faceBitmap = 얼굴만 잘라낸 비트맵
-                        capturedImageView.setImageBitmap(faceBitmap)
-                    }
 
-
-
-                    // 캡처한 이미지를 화면에 띄우기
-                    capturedImageView.setImageBitmap(correctedBitmap)
-                    capturedImageView.visibility = View.VISIBLE
 
                     // 5초 대기 후 감정 예측 실행
                     Handler(Looper.getMainLooper()).postDelayed({
-                        capturedImageView.visibility = View.GONE
+                        cropFaceFromBitmap(correctedBitmap) { faceBitmap ->
+                            // 얼굴만 잘라낸 비트맵 화면에 표시
+                            capturedImageView.setImageBitmap(faceBitmap)
+                            //capturedImageView.visibility = View.VISIBLE
 
-                        val input = preprocessBitmap(correctedBitmap)
-                        val output = Array(1) { FloatArray(5) }
+                            // 5초 대기 후 감정 예측 실행
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                capturedImageView.visibility = View.GONE
 
-                        interpreter.run(input, output)
+                                val input = preprocessBitmap(faceBitmap)
+                                val output = Array(1) { FloatArray(5) }
 
-                        val maxIdx = output[0].indices.maxByOrNull { output[0][it] } ?: 0
-                        val emotion = emotionLabels[maxIdx]
+                                interpreter.run(input, output)
 
-                        my_emotionList.add(emotion)
+                                val maxIdx = output[0].indices.maxByOrNull { output[0][it] } ?: 0
+                                val emotion = emotionLabels[maxIdx]
 
-                        val intent = Intent(this@MyFace2Activity, MyFace3Activity::class.java)
-                        intent.putStringArrayListExtra("answer_emotionList", answer_emotionList)
-                        intent.putStringArrayListExtra("my_emotionList", my_emotionList)
-                        startActivity(intent)
-                        finish()
-                    }, 1000) // 5초
+                                my_emotionList.add(emotion)
+
+                                val intent = Intent(this@MyFace2Activity, MyFace3Activity::class.java)
+                                intent.putStringArrayListExtra("answer_emotionList", answer_emotionList)
+                                intent.putStringArrayListExtra("my_emotionList", my_emotionList)
+                                startActivity(intent)
+                                finish()
+                            }, 0)
+                        }
+
+                    }, 0)
                 }
 
 
@@ -171,24 +172,52 @@ class MyFace2Activity : AppCompatActivity() {
     }
 
     private fun preprocessBitmap(bitmap: Bitmap): Array<Array<Array<FloatArray>>> {
-        val resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
+        val imsize = 256
+        val resized = Bitmap.createScaledBitmap(bitmap, imsize, imsize, true)
 
-        // [1][3][128][128]
-        val input = Array(1) { Array(3) { Array(224) { FloatArray(224) } } }
+        // 좌우반전 (원하면 주석 해제)
+        val matrix = Matrix().apply { postScale(-1f, 1f, imsize / 2f, imsize / 2f) }
+        val flipped = Bitmap.createBitmap(resized, 0, 0, imsize, imsize, matrix, true)
+        val processedBitmap = flipped.copy(Bitmap.Config.ARGB_8888, true)
 
-        for (y in 0 until 224) {
-            for (x in 0 until 224) {
-                val pixel = resized.getPixel(x, y)
+        // PyTorch 기준: mean/std 값
+        val mean = floatArrayOf(0.485f, 0.456f, 0.406f)
+        val std = floatArrayOf(0.229f, 0.224f, 0.225f)
 
-                // channel-first: [1][C][H][W]
-                input[0][0][y][x] = Color.red(pixel) / 255f   // R
-                input[0][1][y][x] = Color.green(pixel) / 255f // G
-                input[0][2][y][x] = Color.blue(pixel) / 255f  // B
+        val input = Array(1) { Array(3) { Array(imsize) { FloatArray(imsize) } } }
+
+        for (y in 0 until imsize) {
+            for (x in 0 until imsize) {
+                val pixel = processedBitmap.getPixel(x, y)
+
+                val r = Color.red(pixel) / 255f
+                val g = Color.green(pixel) / 255f
+                val b = Color.blue(pixel) / 255f
+
+
+                input[0][0][y][x] = (r - mean[0]) / std[0]  // R
+                input[0][1][y][x] = (g - mean[1]) / std[1]  // G
+                input[0][2][y][x] = (b - mean[2]) / std[2]  // B
             }
         }
 
+        // 전처리된 비트맵 화면에 출력 (UI 스레드에서 실행)
+        runOnUiThread {
+            capturedImageView.setImageBitmap(processedBitmap)
+            //capturedImageView.visibility = View.VISIBLE
+
+            // 1초 대기 후 처리
+            Handler(Looper.getMainLooper()).postDelayed({
+                // 1초 후에 실행할 코드
+                Log.d("Preprocess", "1초 대기 완료")
+            }, 0)
+        }
+
+
         return input
     }
+
+
     private fun rotateBitmapIfRequired(context: Context, bitmap: Bitmap, uri: Uri): Bitmap {
         val inputStream = context.contentResolver.openInputStream(uri)
         val exif = ExifInterface(inputStream!!)
