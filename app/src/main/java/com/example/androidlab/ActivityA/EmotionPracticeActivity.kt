@@ -1,26 +1,28 @@
 package com.example.androidlab.ActivityA
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidlab.R
+import com.example.androidlab.utils.Haptics
 
 class EmotionPracticeActivity : AppCompatActivity() {
 
     private lateinit var imageView: ImageView
     private lateinit var answerText: TextView
-    private lateinit var nextButton: Button
-    private lateinit var finishPracticeButton: Button
+    private lateinit var emotionIcon: ImageView      // ← 추가
+    private lateinit var nextButton: View
+    private lateinit var finishPracticeButton: View
 
     private val emotionImages = listOf(
         R.drawable.train_happy_sample1 to "기쁨",
         R.drawable.train_sad_sample1 to "슬픔",
         R.drawable.train_angry_sample1 to "화남",
         R.drawable.train_surprised_sample1 to "놀람",
-
     )
 
     private var currentIndex = 0
@@ -31,7 +33,9 @@ class EmotionPracticeActivity : AppCompatActivity() {
 
         imageView = findViewById(R.id.image_emotion)
         answerText = findViewById(R.id.text_emotion_answer)
-        nextButton = findViewById(R.id.btn_next_image)
+        emotionIcon = findViewById(R.id.image_emotion_icon)   // ← 추가 (XML에 이 ID가 있어야 함)
+        nextButton = findViewById(R.id.button_next_practice)
+        finishPracticeButton = findViewById(R.id.button_finish_practice)
 
         showCurrentEmotion()
 
@@ -39,33 +43,45 @@ class EmotionPracticeActivity : AppCompatActivity() {
             currentIndex++
             if (currentIndex >= emotionImages.size) {
                 Toast.makeText(this, "모든 이미지를 확인했어요!", Toast.LENGTH_SHORT).show()
-                currentIndex = 0 // 또는 finish() 등
                 onPracticeComplete()
+                return@setOnClickListener
             }
             showCurrentEmotion()
         }
-        finishPracticeButton = findViewById(R.id.button_finish_practice)
+
         finishPracticeButton.setOnClickListener {
-            // 연습 완료 버튼 눌렀을 때 처리
-            val intent = Intent(this, EmotionModeSelectActivity::class.java)
-            // 기존 스택을 초기화하고 새로 시작하려면 아래 플래그 추가 가능
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            val intent = Intent(this, EmotionModeSelectActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
             startActivity(intent)
-            finish() // 현재 액티비티 종료
+            finish()
         }
     }
-    // 감정 연습이 모두 끝났을 때도 같은 방식으로 돌아가기
+
     private fun onPracticeComplete() {
-        val intent = Intent(this, EmotionModeSelectActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        val intent = Intent(this, EmotionModeSelectActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        }
         startActivity(intent)
         finish()
     }
 
-
     private fun showCurrentEmotion() {
         val (imageRes, answer) = emotionImages[currentIndex]
         imageView.setImageResource(imageRes)
-        answerText.text = "정답: $answer"
+        answerText.text = "감정: $answer"
+
+        // 감정 문자열에 따른 아이콘 매핑
+        val iconRes = when (answer) {
+            "기쁨" -> R.drawable.happy_icon2
+            "슬픔" -> R.drawable.sad_icon2
+            "화남" -> R.drawable.angry_icon2
+            "놀람" -> R.drawable.surprised_icon2
+            else   -> R.drawable.happy_icon2
+        }
+        emotionIcon.setImageResource(iconRes)
+        emotionIcon.contentDescription = "감정 아이콘: $answer"
+        // ← 추가: 감정에 따른 진동 피드백
+        Haptics.vibrateEmotion(this, answer)
     }
 }

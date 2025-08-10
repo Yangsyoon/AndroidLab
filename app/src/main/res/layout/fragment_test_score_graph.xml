@@ -4,13 +4,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- 위쪽 그래프 영역 -->
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/testScoreChart"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_margin="16dp" />
+        android:layout_weight="1">
+
+        <!-- 배경 이미지 -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/farewell_card5"
+            android:scaleType="centerCrop" />
+
+        <!-- 차트 -->
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/testScoreChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:layout_margin="16dp"/>
+    </FrameLayout>
 
     <!-- 아래쪽 이미지 영역 -->
     <ImageView
@@ -18,7 +31,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="4dp"
-        android:src="@drawable/farewell_card3"
+        android:src="@drawable/farewell_card4"
         android:scaleType="centerCrop" />
 </LinearLayout>

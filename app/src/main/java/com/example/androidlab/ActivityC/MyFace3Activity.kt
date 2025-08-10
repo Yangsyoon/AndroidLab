@@ -23,7 +23,7 @@ class MyFace3Activity : AppCompatActivity() {
         val reason_text=findViewById<TextView>(R.id.reason_text)
         if(answer_emotionList[test_num]==my_emotionList[test_num]){
             correct_or_wrong_text.setText("정답입니다!")
-            reason_text.setText("")
+            reason_text.setText("축하해요! OOO님\n너무 잘하셨어요!")
         }else{
             correct_or_wrong_text.setText("틀렸습니다")
             reason_text.setText("정답: "+answer_emotionList[test_num]+

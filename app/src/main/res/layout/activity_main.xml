@@ -25,7 +25,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"
             android:gravity="bottom|center"
             android:orientation="vertical"
             android:padding="30dp"> <!-- 툴바 아래로 내리기 -->
@@ -64,9 +63,9 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_detective"
                 android:layout_width="match_parent"
-                android:layout_height="96dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/detective_bg"
+                android:layout_height="128dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/detective_bg2"
                 android:text="나는 감정 탐정!"
                 android:textColor="@android:color/black"
                 android:textSize="24sp" />
@@ -75,9 +74,9 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnB"
                 android:layout_width="match_parent"
-                android:layout_height="96dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/deepmind_bg"
+                android:layout_height="128dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/deepmind_bg2"
                 android:text="속마음 알아보기"
                 android:textColor="@android:color/black"
                 android:textSize="24sp" />
@@ -85,9 +84,9 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnC"
                 android:layout_width="match_parent"
-                android:layout_height="96dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/facial_bg"
+                android:layout_height="128dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/facial_bg2"
                 android:text="표정 지어 보기"
                 android:textColor="@android:color/black"
                 android:textSize="24sp" />
@@ -95,8 +94,8 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnD"
                 android:layout_width="match_parent"
-                android:layout_height="96dp"
-                android:background="@drawable/score_bg"
+                android:layout_height="128dp"
+                android:background="@drawable/score_bg2"
                 android:text="내 기록 보기"
                 android:textColor="@android:color/black"
                 android:textSize="24sp" />
