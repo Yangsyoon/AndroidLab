@@ -31,7 +31,7 @@ class EmotionQuizActivity : AppCompatActivity() {
     private lateinit var imageView: ImageView
     private lateinit var resultIcon: ImageView
     private lateinit var resultText: TextView
-    private lateinit var checkAnswerButton: Button
+    private lateinit var checkAnswerButton: View
 
     private var selectedEmotion: String? = null
     private var isAnswerRevealed = false
@@ -85,7 +85,7 @@ class EmotionQuizActivity : AppCompatActivity() {
         val resultIcon = findViewById<ImageView>(R.id.image_result_icon)
         val resultMessage = findViewById<TextView>(R.id.text_result_message)
 
-        resultIcon.setImageResource(if (isCorrect) R.drawable.icon_correct else R.drawable.icon_wrong)
+        resultIcon.setImageResource(if (isCorrect) R.drawable.icon_correct3 else R.drawable.icon_wrong3)
         resultMessage.text = message
 
         resultContainer.visibility = View.VISIBLE
@@ -123,7 +123,7 @@ class EmotionQuizActivity : AppCompatActivity() {
         isAnswerRevealed = true
 
         val isCorrect = selectedEmotion == correct
-        val message = "정답은 $correct 입니다"
+        val message = "정답은 $correct"+"입니다"
         showResult(isCorrect, message)
 
         // 3초 후 다음 문제로 자동 이동
