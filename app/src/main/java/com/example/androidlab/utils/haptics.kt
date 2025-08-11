@@ -18,6 +18,12 @@ object Haptics {
     }
 
     fun vibrateEmotion(context: Context, emotion: String) {
+
+        // 🔹 설정 확인
+        val sharedPref = context.getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
+        val vibrationEnabled = sharedPref.getBoolean("vibration", true)
+        if (!vibrationEnabled) return // 꺼져 있으면 바로 종료
+
         val vibrator = getVibrator(context) ?: return
 
         // 패턴/진폭 기본값 (무표정과 유사)

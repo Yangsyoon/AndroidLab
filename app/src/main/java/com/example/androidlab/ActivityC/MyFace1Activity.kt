@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidlab.R
+import com.example.androidlab.utils.Haptics
 
 class MyFace1Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +18,11 @@ class MyFace1Activity : AppCompatActivity() {
         val test_num=my_emotionList.size
 
         val face_text=findViewById<TextView>(R.id.face_text)
-        face_text.setText(answer_emotionList[test_num])
+        val answerEmotion = answer_emotionList[test_num] // 정답 감정
+        face_text.text = answerEmotion
+
+        // 🔹 정답 감정에 따라 진동 실행
+        Haptics.vibrateEmotion(this, answerEmotion)
 
         val startButton=findViewById<Button>(R.id.btn_start)
         startButton.setOnClickListener {
