@@ -1,14 +1,11 @@
-package com.example.androidlab.database
+package com.example.androidlab.ActivityD
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import java.time.LocalDateTime
 
-@Entity(tableName = "MyFaceScore")
 data class MyFaceScore(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val date: LocalDateTime,
-    val emotion1Correct: Int,//2개 합쳐서 100 단위로 저장
+    val id: String,
+    val date: String, // LocalDateTime 대신 String
+    val emotion1Correct: Int,
     val emotion1Wrong: Int,
     val emotion2Correct: Int,
     val emotion2Wrong: Int,
@@ -18,6 +15,5 @@ data class MyFaceScore(
     val emotion4Wrong: Int,
     val emotion5Correct: Int,
     val emotion5Wrong: Int
-
-
 )
+

@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.androidlab.R
-import com.example.androidlab.database.TestScore
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
@@ -114,7 +113,7 @@ class TestScoreGraphFragment : Fragment(R.layout.fragment_test_score_graph) {
                 override fun getFormattedValue(value: Float): String {
                     val index = ((value / spacing).toInt()) - startX
                     return if (index in data.indices) {
-                        data[index].date.toLocalDate().toString()
+                        data[index].date.toString()
                     } else {
                         ""
                     }
