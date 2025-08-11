@@ -1,6 +1,10 @@
 package com.example.androidlab.ActivityA
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -8,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidlab.R
+import com.example.androidlab.utils.HapticPrefs
 import com.example.androidlab.utils.Haptics
 
 class EmotionPracticeActivity : AppCompatActivity() {
@@ -85,3 +90,4 @@ class EmotionPracticeActivity : AppCompatActivity() {
         Haptics.vibrateEmotion(this, answer)
     }
 }
+

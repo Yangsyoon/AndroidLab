@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="16dp">
+
+        <!-- 감정 선택 -->
+        <TextView
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="감정 선택" android:textStyle="bold" android:textSize="16sp"/>
+
+        <RadioGroup
+            android:id="@+id/rgEmotion"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/rbJoy"      android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="기쁨"  android:checked="true"/>
+            <RadioButton android:id="@+id/rbSurprise" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="놀람"/>
+            <RadioButton android:id="@+id/rbAnger"    android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="화남"/>
+            <RadioButton android:id="@+id/rbSad"      android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="슬픔"/>
+        </RadioGroup>
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/hapticChart"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="12dp"
+            android:padding="8dp"/>
+        <!-- 펄스 개수 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="펄스 개수 (1~8)"
+                android:textStyle="bold"
+                android:layout_marginEnd="12dp"/>
+
+            <com.shawnlin.numberpicker.NumberPicker
+                android:id="@+id/npPulses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:np_orientation="horizontal"
+                app:np_min="1"
+                app:np_max="8"
+                app:np_value="3"
+                android:layout_marginStart="80dp"
+                app:np_selectedTextColor="@color/black"
+                app:np_selectedTextSize="20sp"
+                app:np_textColor="@color/black"
+                app:np_textSize="16sp"/>
+        </LinearLayout>
+
+        <!-- 펄스 길이 -->
+        <TextView
+            android:id="@+id/tvPulseMs" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="펄스 길이: 200 ms" android:layout_marginTop="8dp" android:textStyle="bold"/>
+        <SeekBar
+            android:id="@+id/seekPulseMs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="2000"
+            android:progress="200"
+            android:layout_margin="12dp"/>
+
+        <!-- 쉼 길이 -->
+        <TextView
+            android:id="@+id/tvGapMs" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="쉼 길이: 100 ms" android:layout_marginTop="8dp" android:textStyle="bold"/>
+        <SeekBar
+            android:id="@+id/seekGapMs"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:max="1500" android:progress="100" android:layout_margin="12dp"/>
+
+        <!-- 강도 시작 -->
+        <TextView
+            android:id="@+id/tvStartAmp" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="강도 시작: 170" android:layout_marginTop="8dp" android:textStyle="bold"/>
+        <SeekBar
+            android:id="@+id/seekStartAmp"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:max="255" android:progress="170" android:layout_margin="12dp"/>
+
+        <!-- 강도 끝 -->
+        <TextView
+            android:id="@+id/tvEndAmp" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="강도 끝: 210" android:layout_marginTop="8dp" android:textStyle="bold"/>
+        <SeekBar
+            android:id="@+id/seekEndAmp"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:max="255" android:progress="210" android:layout_margin="12dp"/>
+
+        <!-- 버튼들 -->
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center" android:layout_marginTop="12dp">
+            <Button android:id="@+id/btnPreview" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="진동 테스트" />
+            <Button android:id="@+id/btnSave"    android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="저장" android:layout_marginStart="12dp"/>
+            <Button android:id="@+id/btnReset"   android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="기본값 설정" android:layout_marginStart="12dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="TIP: 강도가 높을수록(255) 진동이 강합니다."
+            android:textSize="12sp" android:layout_marginTop="8dp"/>
+    </LinearLayout>
+</ScrollView>
