@@ -29,6 +29,7 @@ import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.androidlab.R
+import com.example.androidlab.utils.Haptics
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetectorOptions
@@ -153,11 +154,11 @@ class YourFace1Activity : AppCompatActivity() {
                             val emotion = emotionLabels[maxIdx]
 
                             emotionTextView.text = "정답: $emotion"
-                            vibrate(emotion)
+                            Haptics.vibrateEmotion(this@YourFace1Activity, emotion)
                         } else {
                             // 얼굴 인식 실패한 경우
                             faceThumbnail.setImageDrawable(null)
-                            emotionTextView.text = "인식 실패"
+                            emotionTextView.text = "얼굴을 보여주세요"
                         }
                     }
 
