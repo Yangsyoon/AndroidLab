@@ -71,15 +71,13 @@ dependencies {
 
     implementation("com.google.mlkit:face-detection:16.1.7")
 
-<<<<<<< HEAD
     implementation("com.google.firebase:firebase-auth:22.3.0")
     implementation("com.google.firebase:firebase-firestore:25.0.0")
     implementation(platform("com.google.firebase:firebase-bom:34.1.0"))
     implementation("com.google.firebase:firebase-analytics")
 
-=======
     implementation("io.github.ShawnLin013:number-picker:2.4.13")
->>>>>>> origin/junbeom
+
     implementation(libs.kotlin.stdlib)
     implementation(libs.room.ktx)
 

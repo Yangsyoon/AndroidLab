@@ -18,11 +18,9 @@ import com.example.androidlab.Guardian.HapticEditorActivity
 import com.example.androidlab.Guardian.HapticOverviewActivity
 import com.example.androidlab.Guardian.SettingsActivity
 import com.google.android.material.navigation.NavigationView
-<<<<<<< HEAD
 import com.google.firebase.auth.FirebaseAuth
-=======
 import kotlin.jvm.java
->>>>>>> origin/junbeom
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -85,10 +83,11 @@ class MainActivity : AppCompatActivity() {
                     drawerLayout.closeDrawers()
                     true
                 }
-<<<<<<< HEAD
+
                 R.id.btn_logout -> {
                     logout()
-=======
+                    true
+                }
                 R.id.haptic_settings -> {
                     startActivity(Intent(this, HapticEditorActivity::class.java))
                     drawerLayout.closeDrawers()
@@ -97,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.haptic_overview -> {
                     startActivity(Intent(this, HapticOverviewActivity::class.java))
                     drawerLayout.closeDrawers()
->>>>>>> origin/junbeom
+
                     true
                 }
 

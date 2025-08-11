@@ -30,14 +30,11 @@
         <activity android:name=".ActivityD.MyRecordActivity" />
         <activity android:name=".Guardian.SettingsActivity" />
         <activity android:name=".Guardian.GuideActivity" />
-<<<<<<< HEAD
         <activity android:name=".MainActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ResetPasswordActivity" />
-=======
         <activity android:name=".Guardian.HapticEditorActivity" />
         <activity android:name=".Guardian.HapticOverviewActivity" />
->>>>>>> origin/junbeom
 
         <activity
             android:name=".LoginActivity"
