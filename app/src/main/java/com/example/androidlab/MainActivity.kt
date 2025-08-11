@@ -16,11 +16,14 @@ import com.example.androidlab.ActivityD.MyRecordActivity
 import com.example.androidlab.Guardian.GuideActivity
 import com.example.androidlab.Guardian.SettingsActivity
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
+
+    var mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,6 +79,10 @@ class MainActivity : AppCompatActivity() {
                     drawerLayout.closeDrawers()
                     true
                 }
+                R.id.btn_logout -> {
+                    logout()
+                    true
+                }
 
                 else -> false
             }
@@ -103,6 +110,16 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
+    private fun logout() {
+        mAuth.signOut() // Firebase 인증 로그아웃
+
+        // 로그인 화면으로 이동
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        finish() // 현재 액티비티 종료
+    }
 
 
 }

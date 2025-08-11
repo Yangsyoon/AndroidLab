@@ -7,4 +7,9 @@
         android:id="@+id/nav_settings"
         android:title="설정"
         android:icon="@drawable/ic_settings" />
+
+    <item
+        android:id="@+id/btn_logout"
+        android:title="로그아웃"
+        android:icon="@drawable/ic_settings" />
 </menu>

@@ -30,9 +30,12 @@
         <activity android:name=".ActivityD.MyRecordActivity" />
         <activity android:name=".Guardian.SettingsActivity" />
         <activity android:name=".Guardian.GuideActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ResetPasswordActivity" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

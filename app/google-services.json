@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "87049446878",
+    "project_id": "mockathon-48fcd",
+    "storage_bucket": "mockathon-48fcd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87049446878:android:5e6c579dc2d59de182294f",
+        "android_client_info": {
+          "package_name": "com.example.androidlab"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1kFXQEgXbt6el9oTCRBzpkpDHAORCvVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
