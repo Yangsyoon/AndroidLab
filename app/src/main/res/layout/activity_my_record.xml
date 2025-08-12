@@ -1,99 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="bottom|center"
+    android:fitsSystemWindows="true"
     android:paddingBottom="24dp">
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+    <!-- 카드 배경 이미지 -->
+    <ImageView
+        android:id="@+id/score_board"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/score_board"
         android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginTop="20dp">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_goToTestScore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.3333" />
 
-        <!-- 카드 배경 이미지 -->
-        <ImageView
-            android:id="@+id/score_board"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/score_board" />
-
-        <!-- 겹치는 텍스트 (하얀 공간에 맞춰 배치) -->
-        <TextView
-            android:id="@+id/score_board_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="172dp"
-            android:layout_marginTop="34dp"
-            android:layout_marginEnd="22dp"
-            android:gravity="center"
-            android:lineSpacingExtra="4dp"
-            android:maxLines="3"
-            android:text="승호의\n 최근점수야!"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="@android:color/black"
-            android:textSize="28sp" />
-
-        <TextView
-            android:id="@+id/detective_score_board_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginEnd="186dp"
-            android:gravity="center"
-            android:lineSpacingExtra="4dp"
-            android:maxLines="3"
-            android:text="100점"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="@android:color/black"
-            android:textSize="28sp" />
-        <TextView
-            android:id="@+id/facial_score_board_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="183dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginEnd="21dp"
-            android:gravity="center"
-            android:lineSpacingExtra="4dp"
-            android:maxLines="3"
-            android:text="80점"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="@android:color/black"
-            android:textSize="28sp" />
-    </FrameLayout>
-
-        <!-- 첫 번째 버튼 영역 -->
+    <!-- 첫 번째 버튼 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_goToTestScore"
-        android:layout_width="match_parent"
-        android:layout_height="246dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/detective_score_card2"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/score_board"
+        app:layout_constraintBottom_toTopOf="@id/btn_goToMyFaceScore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.3333" />
 
-    <!-- 내부 요소 생략 -->
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!-- 두 번째 버튼 영역 -->
+    <!-- 두 번째 버튼 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_goToMyFaceScore"
-        android:layout_width="match_parent"
-        android:layout_height="246dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginBottom="0dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/facial_score_card2"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_goToTestScore"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.3333" />
 
-    <!-- 내부 요소 생략 -->
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- TextView 3개: ImageView 기준 배치 -->
+    <TextView
+        android:id="@+id/score_board_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="4dp"
+        android:maxLines="3"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="@id/score_board"
+        app:layout_constraintBottom_toBottomOf="@id/score_board"
+        app:layout_constraintStart_toStartOf="@id/score_board"
+        app:layout_constraintEnd_toEndOf="@id/score_board"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintVertical_bias="0.2" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/detective_score_board_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@android:color/black"
+        android:textSize="28sp"
+        app:layout_constraintTop_toTopOf="@id/score_board"
+        app:layout_constraintBottom_toBottomOf="@id/score_board"
+        app:layout_constraintStart_toStartOf="@id/score_board"
+        app:layout_constraintEnd_toEndOf="@id/score_board"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintVertical_bias="0.85" />
+
+    <TextView
+        android:id="@+id/facial_score_board_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@android:color/black"
+        android:textSize="28sp"
+        app:layout_constraintTop_toTopOf="@id/score_board"
+        app:layout_constraintBottom_toBottomOf="@id/score_board"
+        app:layout_constraintStart_toStartOf="@id/score_board"
+        app:layout_constraintEnd_toEndOf="@id/score_board"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintVertical_bias="0.85" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

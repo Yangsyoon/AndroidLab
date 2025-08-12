@@ -60,16 +60,16 @@ class MyFace4Activity : AppCompatActivity() {
                 val scoreData = hashMapOf(
                     "userId" to currentUser.uid,
                     "date" to LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                    "emotion1Correct" to correctCounts[0],
-                    "emotion1Wrong" to wrongCounts[0],
-                    "emotion2Correct" to correctCounts[1],
-                    "emotion2Wrong" to wrongCounts[1],
-                    "emotion3Correct" to correctCounts[2],
-                    "emotion3Wrong" to wrongCounts[2],
-                    "emotion4Correct" to correctCounts[3],
-                    "emotion4Wrong" to wrongCounts[3],
-                    "emotion5Correct" to correctCounts[4],
-                    "emotion5Wrong" to wrongCounts[4]
+                    "angryCorrect" to correctCounts[0],
+                    "angryWrong" to wrongCounts[0],
+                    "happyCorrect" to correctCounts[1],
+                    "happyWrong" to wrongCounts[1],
+                    "neutralCorrect" to correctCounts[2],
+                    "neutralWrong" to wrongCounts[2],
+                    "surprisedCorrect" to correctCounts[3],
+                    "surprisedWrong" to wrongCounts[3],
+                    "sadCorrect" to correctCounts[4],
+                    "sadWrong" to wrongCounts[4]
                 )
 
                 firestore.collection("faceScores")

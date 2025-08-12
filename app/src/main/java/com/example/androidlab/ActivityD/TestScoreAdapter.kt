@@ -35,14 +35,21 @@ class TestScoreAdapter(private val onItemClick: (TestScore) -> Unit) : ListAdapt
 
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(item: TestScore) {
-            val formatterInput = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
             val formatterOutput = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-
             val dateStr = item.date.format(formatterOutput)
             dateText.text = dateStr
 
-            val totalScore = item.emotion1Correct + item.emotion2Correct + item.emotion3Correct + item.emotion4Correct + item.emotion5Correct
-            totalScoreText.text = "총합: $totalScore 점"
+            val totalScore = item.angryCorrect + item.happyCorrect +
+                    item.surprisedCorrect + item.sadCorrect
+            val wrongScore = item.angryWrong + item.happyWrong +
+                     item.surprisedWrong + item.sadWrong
+
+            val finalScore = if (totalScore + wrongScore > 0) {
+                (totalScore * 100 / (totalScore + wrongScore)).toInt()
+            } else {
+                0
+            }
+            totalScoreText.text = "총합: $finalScore 점"
 
             itemView.setOnClickListener { onItemClick(item) }
         }

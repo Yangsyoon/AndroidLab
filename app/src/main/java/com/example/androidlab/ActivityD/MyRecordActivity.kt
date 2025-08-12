@@ -2,28 +2,110 @@ package com.example.androidlab.ActivityD
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.lifecycleScope
 import com.example.androidlab.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import com.google.firebase.firestore.Query
+
 
 class MyRecordActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_record)
 
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+
         val goToTestScoreButton = findViewById<ConstraintLayout>(R.id.btn_goToTestScore)
         val goToMyFaceScoreButton = findViewById<ConstraintLayout>(R.id.btn_goToMyFaceScore)
 
+        val nicknameTextView = findViewById<TextView>(R.id.score_board_text)
+        val testScoreText = findViewById<TextView>(R.id.detective_score_board_text)
+        val myFaceScoreText = findViewById<TextView>(R.id.facial_score_board_text)
+
+        // 닉네임 가져오기
+        val uid = auth.currentUser?.uid
+        if (uid != null) {
+            db.collection("users").document(uid)
+                .get()
+                .addOnSuccessListener { document ->
+                    val nickname = document.getString("nickname") ?: "닉네임 없음"
+                    nicknameTextView.text = "${nickname}의\n최근점수야!"
+                }
+        }
+
+        // 최근 testscore 가져오기
+        if (uid != null) {
+            db.collection("testScores")
+                .whereEqualTo("userId", uid)
+                .orderBy("date", Query.Direction.DESCENDING)
+                .limit(1)
+                .get()
+                .addOnSuccessListener { documents ->
+                    if (!documents.isEmpty) {
+                        val latest = documents.documents[0].toObject(TestScore::class.java)
+                        if (latest != null) {
+                            val score = calculateScore(
+                                listOf(
+                                    latest.angryCorrect,
+                                    latest.happyCorrect,
+                                    latest.surprisedCorrect,
+                                    latest.sadCorrect
+                                ),
+                                listOf(
+                                    latest.angryWrong,
+                                    latest.happyWrong,
+                                    latest.surprisedWrong,
+                                    latest.sadWrong
+                                )
+                            )
+                            testScoreText.text = "${score}점"
+                        }
+                    }
+                }
+        }
+
+        // 최근 myfacescore 가져오기
+        if (uid != null) {
+            db.collection("faceScores")
+                .whereEqualTo("userId", uid)
+                .orderBy("date", Query.Direction.DESCENDING)
+                .limit(1)
+                .get()
+                .addOnSuccessListener { documents ->
+                    if (!documents.isEmpty) {
+                        val latest = documents.documents[0].toObject(MyFaceScore::class.java)
+                        if (latest != null) {
+                            val score = calculateScore(
+                                listOf(
+                                    latest.angryCorrect,
+                                    latest.happyCorrect,
+                                    latest.neutralCorrect,
+                                    latest.surprisedCorrect,
+                                    latest.sadCorrect
+                                ),
+                                listOf(
+                                    latest.angryWrong,
+                                    latest.happyWrong,
+                                    latest.neutralWrong,
+                                    latest.surprisedWrong,
+                                    latest.sadWrong
+                                )
+                            )
+                            myFaceScoreText.text = "${score}점"
+                        }
+                    }
+                }
+        }
+
+        // 버튼 이벤트
         goToMyFaceScoreButton.setOnClickListener {
             startActivity(Intent(this, MyFaceScoreActivity::class.java))
         }
@@ -32,7 +114,14 @@ class MyRecordActivity : AppCompatActivity() {
         }
     }
 
-
-
-
+    private fun calculateScore(corrects: List<Int>, wrongs: List<Int>): Int {
+        val totalCorrect = corrects.sum()
+        val totalWrong = wrongs.sum()
+        val total = totalCorrect + totalWrong
+        return if (total > 0) {
+            (totalCorrect.toFloat() / total * 100).toInt()
+        } else {
+            0
+        }
+    }
 }

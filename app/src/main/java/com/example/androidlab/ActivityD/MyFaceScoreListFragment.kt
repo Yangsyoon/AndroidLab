@@ -27,7 +27,6 @@ class MyFaceScoreListFragment : Fragment(R.layout.fragment_my_face_score_list) {
     private lateinit var adapter: MyFaceScoreAdapter
     private val viewModel: MyFaceScoreViewModel by activityViewModels()  // 공유 ViewModel
 
-    private val emotionLabels = listOf("화남", "기쁨", "무표정", "놀람","슬픔")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -63,8 +62,8 @@ class MyFaceScoreListFragment : Fragment(R.layout.fragment_my_face_score_list) {
         dialog.show()
     }
     private fun drawHorizontalBarChart(chart: BarChart, score: MyFaceScore) {
-        val corrects = listOf(score.emotion1Correct, score.emotion2Correct, score.emotion3Correct, score.emotion4Correct, score.emotion5Correct)
-        val wrongs = listOf(score.emotion1Wrong, score.emotion2Wrong, score.emotion3Wrong, score.emotion4Wrong, score.emotion5Wrong)
+        val corrects = listOf(score.angryCorrect,score.happyCorrect,score.neutralCorrect,score.surprisedCorrect,score.sadCorrect)
+        val wrongs = listOf(score.angryWrong,score.happyWrong,score.neutralWrong,score.surprisedWrong,score.sadWrong)
 
         val entries = corrects.indices.map { i ->
             BarEntry(i.toFloat(), floatArrayOf(corrects[i].toFloat(), wrongs[i].toFloat()))
@@ -78,7 +77,7 @@ class MyFaceScoreListFragment : Fragment(R.layout.fragment_my_face_score_list) {
         chart.data = BarData(dataSet).apply { barWidth = 0.5f }
 
         chart.xAxis.apply {
-            valueFormatter = IndexAxisValueFormatter(emotionLabels)
+            valueFormatter = IndexAxisValueFormatter(listOf("화남", "기쁨", "무표정", "놀람","슬픔"))
             position = XAxis.XAxisPosition.BOTTOM
             granularity = 1f
         }

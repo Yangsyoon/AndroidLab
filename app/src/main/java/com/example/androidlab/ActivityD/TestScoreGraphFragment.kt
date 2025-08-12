@@ -43,13 +43,13 @@ class TestScoreGraphFragment : Fragment(R.layout.fragment_test_score_graph) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.testScores.collectLatest { scores ->
-                drawTestScoreLineChart(lineChart, scores)
+                drawScoreLineChart(lineChart, scores)
             }
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun drawTestScoreLineChart(chart: LineChart, data: List<TestScore>) {
+    private fun drawScoreLineChart(chart: LineChart, data: List<TestScore>) {
         val totalVisiblePoints = 7
         val spacing = 2f // ✅ 데이터 간 간격 (x값 간격)
         val dataSize = data.size
@@ -57,8 +57,17 @@ class TestScoreGraphFragment : Fragment(R.layout.fragment_test_score_graph) {
 
         // ✅ Entry 만들기 (x 값에 spacing 반영)
         val entries = data.mapIndexed { index, item ->
-            val totalScore = item.emotion1Correct + item.emotion2Correct + item.emotion3Correct + item.emotion4Correct
-            Entry((startX + index) * spacing, totalScore.toFloat())
+            val totalScore = item.angryCorrect + item.happyCorrect +
+                    item.surprisedCorrect + item.sadCorrect
+            val wrongScore = item.angryWrong + item.happyWrong +
+                    item.surprisedWrong + item.sadWrong
+
+            val finalScore = if (totalScore + wrongScore > 0) {
+                (totalScore * 100 / (totalScore + wrongScore)).toInt()
+            } else {
+                0
+            }
+            Entry((startX + index) * spacing, finalScore.toFloat())
         }
 
         // ✅ DataSet 구성
@@ -179,8 +188,8 @@ class TestScoreGraphFragment : Fragment(R.layout.fragment_test_score_graph) {
         dialog.show()
     }
     private fun drawHorizontalBarChart(chart: BarChart, score: TestScore) {
-        val corrects = listOf(score.emotion1Correct, score.emotion2Correct, score.emotion3Correct, score.emotion4Correct)
-        val wrongs = listOf(score.emotion1Wrong, score.emotion2Wrong, score.emotion3Wrong, score.emotion4Wrong)
+        val corrects = listOf(score.angryCorrect,score.happyCorrect,score.surprisedCorrect,score.sadCorrect)
+        val wrongs = listOf(score.angryWrong,score.happyWrong,score.surprisedWrong,score.sadWrong)
 
         val entries = corrects.indices.map { i ->
             BarEntry(i.toFloat(), floatArrayOf(corrects[i].toFloat(), wrongs[i].toFloat()))

@@ -39,10 +39,10 @@ class MyFaceScoreAdapter(private val onItemClick: (MyFaceScore) -> Unit) :
             val dateStr = item.date.format(formatterOutput)
             dateText.text = dateStr
 
-            val totalScore = item.emotion1Correct + item.emotion2Correct +
-                    item.emotion3Correct + item.emotion4Correct + item.emotion5Correct
-            val wrongScore = item.emotion1Wrong + item.emotion2Wrong +
-                    item.emotion3Wrong + item.emotion4Wrong + item.emotion5Wrong
+            val totalScore = item.angryCorrect + item.happyCorrect +
+                    item.neutralCorrect + item.surprisedCorrect + item.sadCorrect
+            val wrongScore = item.angryWrong + item.happyWrong +
+                    item.neutralWrong + item.surprisedWrong + item.sadWrong
 
             val finalScore = if (totalScore + wrongScore > 0) {
                 (totalScore * 100 / (totalScore + wrongScore)).toInt()
@@ -62,6 +62,7 @@ class MyFaceScoreAdapter(private val onItemClick: (MyFaceScore) -> Unit) :
         return MyFaceScoreViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyFaceScoreViewHolder, position: Int) {
         holder.bind(getItem(position))
     }

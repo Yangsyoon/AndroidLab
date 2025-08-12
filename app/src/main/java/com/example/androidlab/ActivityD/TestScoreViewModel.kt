@@ -40,16 +40,14 @@ class TestScoreViewModel(application: Application) : AndroidViewModel(applicatio
                         TestScore(
                             id = doc.id,
                             date = dateStr, // 문자열로 바로 저장
-                            emotion1Correct = (doc.getLong("emotion1Correct") ?: 0L).toInt(),
-                            emotion1Wrong = (doc.getLong("emotion1Wrong") ?: 0L).toInt(),
-                            emotion2Correct = (doc.getLong("emotion2Correct") ?: 0L).toInt(),
-                            emotion2Wrong = (doc.getLong("emotion2Wrong") ?: 0L).toInt(),
-                            emotion3Correct = (doc.getLong("emotion3Correct") ?: 0L).toInt(),
-                            emotion3Wrong = (doc.getLong("emotion3Wrong") ?: 0L).toInt(),
-                            emotion4Correct = (doc.getLong("emotion4Correct") ?: 0L).toInt(),
-                            emotion4Wrong = (doc.getLong("emotion4Wrong") ?: 0L).toInt(),
-                            emotion5Correct = (doc.getLong("emotion5Correct") ?: 0L).toInt(),
-                            emotion5Wrong = (doc.getLong("emotion5Wrong") ?: 0L).toInt(),
+                            angryCorrect = (doc.getLong("angryCorrect") ?: 0L).toInt(),
+                            angryWrong = (doc.getLong("angryWrong") ?: 0L).toInt(),
+                            happyCorrect = (doc.getLong("happyCorrect") ?: 0L).toInt(),
+                            happyWrong = (doc.getLong("happyWrong") ?: 0L).toInt(),
+                            surprisedCorrect = (doc.getLong("surprisedCorrect") ?: 0L).toInt(),
+                            surprisedWrong = (doc.getLong("surprisedWrong") ?: 0L).toInt(),
+                            sadCorrect = (doc.getLong("sadCorrect") ?: 0L).toInt(),
+                            sadWrong = (doc.getLong("sadWrong") ?: 0L).toInt()
                         )
                     } catch (e: Exception) {
                         null

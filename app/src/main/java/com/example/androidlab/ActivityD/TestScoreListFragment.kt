@@ -62,8 +62,8 @@ class TestScoreListFragment : Fragment(R.layout.fragment_test_score_list) {
         dialog.show()
     }
     private fun drawHorizontalBarChart(chart: BarChart, score: TestScore) {
-        val corrects = listOf(score.emotion1Correct, score.emotion2Correct, score.emotion3Correct, score.emotion4Correct)
-        val wrongs = listOf(score.emotion1Wrong, score.emotion2Wrong, score.emotion3Wrong, score.emotion4Wrong)
+        val corrects = listOf(score.angryCorrect,score.happyCorrect,score.surprisedCorrect,score.sadCorrect)
+        val wrongs = listOf(score.angryWrong,score.happyWrong,score.surprisedWrong,score.sadWrong)
 
         val entries = corrects.indices.map { i ->
             BarEntry(i.toFloat(), floatArrayOf(corrects[i].toFloat(), wrongs[i].toFloat()))
@@ -77,7 +77,7 @@ class TestScoreListFragment : Fragment(R.layout.fragment_test_score_list) {
         chart.data = BarData(dataSet).apply { barWidth = 0.5f }
 
         chart.xAxis.apply {
-            valueFormatter = IndexAxisValueFormatter(listOf("감정1", "감정2", "감정3", "감정4"))
+            valueFormatter = IndexAxisValueFormatter(listOf("화남", "기쁨", "놀람","슬픔"))
             position = XAxis.XAxisPosition.BOTTOM
             granularity = 1f
         }

@@ -33,8 +33,6 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
     private val viewModel: MyFaceScoreViewModel by activityViewModels()
     private lateinit var lineChart: LineChart
 
-    private val emotionLabels = listOf("화남", "기쁨", "무표정", "놀람","슬픔")
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,13 +40,13 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.faceScores.collectLatest { scores ->
-                drawFaceScoreLineChart(lineChart, scores)
+                drawScoreLineChart(lineChart, scores)
             }
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun drawFaceScoreLineChart(chart: LineChart, data: List<MyFaceScore>) {
+    private fun drawScoreLineChart(chart: LineChart, data: List<MyFaceScore>) {
         val totalVisiblePoints = 7
         val spacing = 2f // ✅ 데이터 간 간격 (x값 간격)
         val dataSize = data.size
@@ -56,21 +54,49 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
 
         // ✅ Entry 만들기 (x 값에 spacing 반영)
         val entries = data.mapIndexed { index, item ->
-            val totalScore = item.emotion1Correct + item.emotion2Correct + item.emotion3Correct + item.emotion4Correct + item.emotion5Correct
-            val wrongScore = item.emotion1Wrong + item.emotion2Wrong + item.emotion3Wrong + item.emotion4Wrong + item.emotion5Wrong
+            val totalScore = item.angryCorrect + item.happyCorrect +
+                    item.neutralCorrect + item.surprisedCorrect + item.sadCorrect
+            val wrongScore = item.angryWrong + item.happyWrong +
+                    item.neutralWrong + item.surprisedWrong + item.sadWrong
 
-            val final_score=(totalScore*100/(totalScore+wrongScore)).toInt()
-            Entry((startX + index) * spacing, final_score.toFloat())
+            val finalScore = if (totalScore + wrongScore > 0) {
+                (totalScore * 100 / (totalScore + wrongScore)).toInt()
+            } else {
+                0
+            }
+            Entry((startX + index) * spacing, finalScore.toFloat())
         }
 
+        // ✅ DataSet 구성
         val lineDataSet = LineDataSet(entries, "").apply {
-            color = Color.RED             // 선 색상
-            setCircleColor(Color.RED)     // 점 색상
+            /*
+            color = requireContext().getColor(R.color.teal_700)
             valueTextSize = 10f
             setDrawCircles(true)
             setDrawValues(true)
-        }
+            */
+            // ▶︎ 라인/포인트를 굵고 선명하게
+            lineWidth = 3.5f
+            setDrawCircles(true)
+            circleRadius = 4.5f
+            setDrawCircleHole(false)
 
+            // ▶︎ 배경 이미지 위에서도 잘 보이도록 높은 대비 색상(필요시 변경)
+            val fg = requireContext().getColor(android.R.color.holo_green_dark)
+            color = fg
+            setCircleColor(fg)
+            valueTextColor = fg
+            valueTextSize = 11f
+
+            // ▶︎ 부드러운 곡선 + 채움(투명도)
+            mode = LineDataSet.Mode.CUBIC_BEZIER
+            setDrawFilled(true)
+            fillColor = fg
+            fillAlpha = 150   // 0~255
+
+            // 하이라이트(선택 시) 색상
+            highLightColor = requireContext().getColor(android.R.color.holo_orange_light)
+        }
 
         chart.data = LineData(lineDataSet)
 
@@ -100,23 +126,16 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
                 }
             }
         }
-        chart.axisLeft.apply {
-            axisMinimum = 0f
-            axisMaximum = 100f
-        }
-
 
         // ✅ 차트 시각 옵션
         chart.axisRight.isEnabled = false
         chart.description = Description().apply { text = "" }
-
         chart.setTouchEnabled(true)
-        chart.isDragEnabled=true
+        chart.isDragEnabled = true
+        chart.setScaleEnabled(true)
+        chart.setPinchZoom(true)
+        chart.setExtraOffsets(0f,0f,0f,40f)
 
-        chart.setScaleEnabled(false)   // ✅ 확대/축소 비활성화
-        chart.setPinchZoom(false)      // ✅ 줌 비활성화
-
-        chart.setExtraOffsets(0f, 0f, 0f, 40f)
         chart.setVisibleXRangeMaximum((totalVisiblePoints - 1) * spacing + 1) // ✅ 한 화면에 보이는 개수 제한
         chart.invalidate()
 
@@ -148,6 +167,9 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
         })
     }
 
+
+
+
     private fun showBarChartDialog(score: MyFaceScore) {
         val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_bar_chart, null)
         val chart = dialogView.findViewById<BarChart>(R.id.dialogBarChart)
@@ -163,14 +185,14 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
         dialog.show()
     }
     private fun drawHorizontalBarChart(chart: BarChart, score: MyFaceScore) {
-        val corrects = listOf(score.emotion1Correct, score.emotion2Correct, score.emotion3Correct, score.emotion4Correct, score.emotion5Correct)
-        val wrongs = listOf(score.emotion1Wrong, score.emotion2Wrong, score.emotion3Wrong, score.emotion4Wrong, score.emotion5Wrong)
+        val corrects = listOf(score.angryCorrect,score.happyCorrect,score.neutralCorrect,score.surprisedCorrect,score.sadCorrect)
+        val wrongs = listOf(score.angryWrong,score.happyWrong,score.neutralWrong,score.surprisedWrong,score.sadWrong)
 
         val entries = corrects.indices.map { i ->
             BarEntry(i.toFloat(), floatArrayOf(corrects[i].toFloat(), wrongs[i].toFloat()))
         }
 
-        val dataSet = BarDataSet(entries, "내 표정 짓기 점수").apply {
+        val dataSet = BarDataSet(entries, "감정 탐정 점수").apply {
             setColors(intArrayOf(R.color.blue, R.color.red), requireContext())
             stackLabels = arrayOf("맞음", "틀림")
         }
@@ -178,7 +200,7 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
         chart.data = BarData(dataSet).apply { barWidth = 0.5f }
 
         chart.xAxis.apply {
-            valueFormatter = IndexAxisValueFormatter(emotionLabels)
+            valueFormatter = IndexAxisValueFormatter(listOf("화남", "기쁨", "무표정", "놀람", "슬픔"))
             position = XAxis.XAxisPosition.BOTTOM
             granularity = 1f
         }
