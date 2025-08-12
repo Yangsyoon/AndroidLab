@@ -48,4 +48,9 @@
             android:layout_height="48dp" />
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recommand_text"/>
+
 </LinearLayout>
