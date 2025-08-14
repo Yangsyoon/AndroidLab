@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -19,6 +20,7 @@ import com.example.androidlab.Guardian.HapticOverviewActivity
 import com.example.androidlab.Guardian.SettingsActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.jvm.java
 
 
@@ -26,8 +28,10 @@ import kotlin.jvm.java
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
+    private lateinit var welcome_text: TextView
 
     var mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    var db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +39,18 @@ class MainActivity : AppCompatActivity() {
 
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
+        welcome_text=findViewById<TextView>(R.id.welcome_text)
+
+        // 닉네임 가져오기
+        val uid = mAuth.currentUser?.uid
+        if (uid != null) {
+            db.collection("users").document(uid)
+                .get()
+                .addOnSuccessListener { document ->
+                    val nickname = document.getString("nickname") ?: "닉네임 없음"
+                    welcome_text.text = "${nickname}야!\n 만나서 반가워!\n오늘도 같이 놀자!"
+                }
+        }
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)

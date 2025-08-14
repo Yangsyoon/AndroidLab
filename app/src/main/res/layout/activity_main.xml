@@ -54,7 +54,6 @@
                     android:gravity="center"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="3"
-                    android:text="승호야!\n 만나서 반가워!\n오늘도 같이 놀자!"
                     android:textColor="@android:color/black"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="22sp" />
