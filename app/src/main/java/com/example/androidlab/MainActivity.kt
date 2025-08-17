@@ -129,7 +129,8 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_guide -> {
-                    startActivity(Intent(this, GuideActivity::class.java))
+                    /*startActivity(Intent(this, GuideActivity::class.java))*/
+                    startActivity(Intent(this, OnboardingActivity::class.java))
                     drawerLayout.closeDrawers()
                     true
                 }

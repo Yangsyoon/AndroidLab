@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+    <!-- 내부 화면 이미지 -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="280dp"
+        android:layout_height="560dp"
+        android:layout_gravity="center"/>
+    
+    <!-- 휴대폰 프레임 -->
+    <ImageView
+        android:id="@+id/phoneFrame"
+        android:layout_width="300dp"
+        android:layout_height="600dp"
+        android:layout_gravity="center"
+        android:src="@drawable/smartphone"
+        android:scaleType="fitXY"/>
+
+
+</FrameLayout>

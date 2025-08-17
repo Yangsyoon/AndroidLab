@@ -41,10 +41,25 @@ class LoginActivity : AppCompatActivity() {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this, MainActivity::class.java))
+
+                            val sharedPref = getSharedPreferences("MyAppPref", MODE_PRIVATE)
+                            val isFirstLogin = sharedPref.getBoolean("isFirstLogin", true)
+
+                            if (isFirstLogin) {
+                                // 처음 로그인이면 온보딩으로
+                                sharedPref.edit().putBoolean("isFirstLogin", false).apply()
+                                startActivity(Intent(this, OnboardingActivity::class.java))
+                            } else {
+                                startActivity(Intent(this, MainActivity::class.java))
+                            }
+
                             finish()
                         } else {
-                            Toast.makeText(this, "로그인 실패: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this,
+                                "로그인 실패: ${task.exception?.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
             } else {

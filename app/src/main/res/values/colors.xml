@@ -9,4 +9,6 @@
     <color name="soft_green">#EDEFE4</color>
     <color name="soft_green2">#DBEA8D</color>
     <color name="soft_yellow">#F6F3D4</color>
+    <color name="green">#4CAF50</color>  <!-- 녹색 점 -->
+    <color name="gray">#BDBDBD</color>
 </resources>
