@@ -30,14 +30,26 @@ class MyRecordActivity : AppCompatActivity() {
         val testScoreText = findViewById<TextView>(R.id.detective_score_board_text)
         val myFaceScoreText = findViewById<TextView>(R.id.facial_score_board_text)
 
-        // 닉네임 가져오기
         val uid = auth.currentUser?.uid
         if (uid != null) {
             db.collection("users").document(uid)
                 .get()
                 .addOnSuccessListener { document ->
-                    val nickname = document.getString("nickname") ?: "닉네임 없음"
-                    nicknameTextView.text = "${nickname}의\n최근점수야!"
+                    val fullName = document.getString("nickname") ?: "닉네임 없음"
+
+                    // ✅ 성 빼고 이름만 사용
+                    val name = if (fullName.length > 1) fullName.substring(1) else fullName
+
+                    // 마지막 글자 추출
+                    val lastChar = name.lastOrNull()
+                    val possessive = if (lastChar != null && lastChar.code in 0xAC00..0xD7A3) {
+                        val hasJongseong = (lastChar.code - 0xAC00) % 28 != 0
+                        if (hasJongseong) "${name}이의" else "${name}의"
+                    } else {
+                        "${name}의" // 한글이 아닐 경우 기본 "의"
+                    }
+
+                    nicknameTextView.text = "${possessive}\n최근점수야!"
                 }
         }
 

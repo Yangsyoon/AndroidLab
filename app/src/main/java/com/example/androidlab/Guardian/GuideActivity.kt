@@ -55,22 +55,10 @@ class GuideActivity : AppCompatActivity() {
             binding.videoView.start()
         }
 
-        binding.btnConfirm.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(intent)
-            finish()  // 현재 액티비티 종료
-        }
 
 
 
 
     }
 
-
-    // 뒤로가기 버튼 기능 활성화
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressedDispatcher.onBackPressed()
-        return true
-    }
 }

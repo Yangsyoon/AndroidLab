@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/soft_green2">
     <item
         android:id="@+id/action_drawer"
-        android:icon="@drawable/ic_hamburger"
+        android:icon="@drawable/ic_hamburger2"
         android:title="메뉴"
         app:showAsAction="always" />
 </menu>

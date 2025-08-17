@@ -4,10 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:background="@drawable/face_bg8">
 
     <EditText
         android:id="@+id/etEmail"
+        android:layout_marginTop="192dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="이메일" />
@@ -24,10 +26,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="닉네임" />
-
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="회원가입" />
+        android:layout_marginTop="24dp"
+        android:text="회원가입"
+        android:background="@color/soft_green2" />
+
 </LinearLayout>

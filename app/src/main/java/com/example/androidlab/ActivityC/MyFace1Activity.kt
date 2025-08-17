@@ -7,11 +7,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidlab.R
 import com.example.androidlab.utils.Haptics
-
 class MyFace1Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_face_1)
+
 
         val answer_emotionList = intent.getStringArrayListExtra("answer_emotionList") ?: arrayListOf()
         val my_emotionList = intent.getStringArrayListExtra("my_emotionList") ?: arrayListOf()

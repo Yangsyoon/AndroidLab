@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@drawable/face_bg8">
 
     <ImageView
         android:layout_width="120dp"
@@ -15,6 +16,7 @@
 
     <EditText
         android:id="@+id/etEmail"
+        android:layout_marginTop="36dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="이메일" />
@@ -26,34 +28,43 @@
         android:hint="비밀번호"
         android:inputType="textPassword" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="로그인" />
+        android:text="로그인"
+        android:layout_marginTop="24dp"
+        android:background="@color/soft_green2"
+        app:layout_constraintTop_toBottomOf="@+id/face_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
+        android:layout_height="wrap_content"
+        android:background="@color/soft_green2">
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tvRegister"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="회원가입"
+            android:background="@color/soft_green2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvResetPassword"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread" />
-
-        <Button
+            app:layout_constraintHorizontal_chainStyle="spread"  />
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tvResetPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="비밀번호 변경"
+            android:background="@color/soft_green2"
             app:layout_constraintStart_toEndOf="@id/tvRegister"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

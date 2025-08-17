@@ -89,7 +89,7 @@ class MyFaceScoreGraphFragment : Fragment(R.layout.fragment_my_face_score_graph)
             valueTextSize = 11f
 
             // ▶︎ 부드러운 곡선 + 채움(투명도)
-            mode = LineDataSet.Mode.CUBIC_BEZIER
+            mode = LineDataSet.Mode.LINEAR
             setDrawFilled(true)
             fillColor = fg
             fillAlpha = 150   // 0~255

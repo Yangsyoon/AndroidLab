@@ -7,6 +7,7 @@
 
     <TextView
         android:text="설정"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:layout_marginBottom="24dp"
         android:layout_width="wrap_content"
@@ -16,41 +17,89 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="사운드 사용"/>
+            android:textColor="@color/black"
+            android:text="사운드 사용" />
 
+        <!-- OFF 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:textColor="@color/black"
+            android:text="OFF"
+            android:textSize="14sp" />
+
+        <!-- 스위치 -->
         <Switch
             android:id="@+id/switch_sound"
-            android:layout_width="48dp"
-            android:layout_height="48dp" />
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content" />
+
+        <!-- ON 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginStart="4dp"
+            android:text="ON"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="진동 사용"/>
+            android:textColor="@color/black"
+            android:text="진동 사용" />
 
+        <!-- OFF 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginEnd="4dp"
+            android:text="OFF"
+            android:textSize="14sp" />
+
+        <!-- 스위치 -->
         <Switch
             android:id="@+id/switch_vibration"
-            android:layout_width="48dp"
-            android:layout_height="48dp" />
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
+        <!-- ON 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/black"
+            android:text="ON"
+            android:textSize="14sp" />
+    </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:layout_marginTop="48dp"
+        android:textColor="@color/black"
         android:id="@+id/recommand_text"/>
 
 </LinearLayout>

@@ -101,9 +101,29 @@
         <LinearLayout
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:orientation="horizontal" android:gravity="center" android:layout_marginTop="12dp">
-            <Button android:id="@+id/btnPreview" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="진동 테스트" />
-            <Button android:id="@+id/btnSave"    android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="저장" android:layout_marginStart="12dp"/>
-            <Button android:id="@+id/btnReset"   android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="기본값 설정" android:layout_marginStart="12dp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/FlatButton"
+                android:id="@+id/btnPreview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="진동 테스트"
+                android:background="@drawable/bg_button_yellow"/>
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/FlatButton"
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="저장"
+                android:background="@drawable/bg_button_yellow"
+                android:layout_marginStart="18dp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/FlatButton"
+                android:id="@+id/btnReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기본값 설정"
+                android:background="@drawable/bg_button_yellow"
+                android:layout_marginStart="18dp"/>
         </LinearLayout>
 
         <TextView

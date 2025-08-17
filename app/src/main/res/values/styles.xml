@@ -1,9 +1,33 @@
-<!-- res/values/styles.xml -->
 <resources>
 
     <!-- 앱 테마 정의 -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- 기본 색상 정의 등 필요하면 추가 -->
+        <!-- Toolbar 전역 스타일 -->
+        <item name="toolbarStyle">@style/Widget.MyApp.Toolbar</item>
+
+        <!-- 🔹 시스템 바(위/아래) 색 통일 -->
+        <item name="android:statusBarColor">@color/soft_green</item>
+        <item name="android:navigationBarColor">@color/soft_green</item>
+
+        <!-- 배경이 밝으면 true(검은 아이콘), 어두우면 false(하얀 아이콘) -->
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- ✅ 윈도우 바닥 자체 색 (가장 중요) -->
+        <item name="android:windowBackground">@color/soft_green</item>
+        <!-- (선택) 앱 전반의 기본 배경색까지 맞추고 싶다면 -->
+        <item name="android:colorBackground">@color/soft_green</item>
+
+    </style>
+
+    <!-- Toolbar 스타일 -->
+    <style name="Widget.MyApp.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/soft_green</item>
+        <item name="titleTextColor">@android:color/white</item>
+        <item name="subtitleTextColor">@android:color/white</item>
+    </style>
+    <style name="FlatButton" parent="Widget.AppCompat.Button">
+        <item name="android:elevation">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:outlineProvider">none</item>
     </style>
 
 </resources>

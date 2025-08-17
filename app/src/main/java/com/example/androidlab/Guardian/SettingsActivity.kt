@@ -197,8 +197,9 @@ class SettingsActivity : AppCompatActivity() {
 
         if (faceScore == null || testScore == null) return
 
-        if (faceScore >= 80 && testScore >= 80) {
-            recommand_text.text = "진동 피드백을 꺼보시는것을 추천드립니다."
+        if (faceScore >= 70 && testScore >= 70) {
+            recommand_text.text = "자녀의 안정적인 학습 성취(70점 이상)가 확인되었습니다.\n" +
+                    "더 이상 보조적인 피드백에 의존하지 않아도\n"+ "원활한 학습이 가능할 것으로 예상되므로,\n"+"진동 피드백 끄시는 것을 권유드립니다"
         }
     }
 }
