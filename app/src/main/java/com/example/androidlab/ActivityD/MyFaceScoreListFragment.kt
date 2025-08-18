@@ -85,7 +85,7 @@ class MyFaceScoreListFragment : Fragment(R.layout.fragment_my_face_score_list) {
         }
 
         val dataSet = BarDataSet(entries, "정답 개수").apply {
-            setColors(intArrayOf(R.color.blue, R.color.red), requireContext())
+            setColors(intArrayOf(R.color.soft_green2, R.color.soft_green), requireContext())
             stackLabels = arrayOf("맞음", "틀림")
         }
 
