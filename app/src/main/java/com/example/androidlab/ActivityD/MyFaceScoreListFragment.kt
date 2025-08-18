@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidlab.R
 import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.charts.HorizontalBarChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -49,7 +51,7 @@ class MyFaceScoreListFragment : Fragment(R.layout.fragment_my_face_score_list) {
 
     private fun showBarChartDialog(score: MyFaceScore) {
         val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_bar_chart, null)
-        val chart = dialogView.findViewById<BarChart>(R.id.dialogBarChart)
+        val chart = dialogView.findViewById<HorizontalBarChart>(R.id.dialogBarChart)
         val closeButton = dialogView.findViewById<Button>(R.id.closeButton)
 
         drawHorizontalBarChart(chart, score)
@@ -61,30 +63,63 @@ class MyFaceScoreListFragment : Fragment(R.layout.fragment_my_face_score_list) {
         closeButton.setOnClickListener { dialog.dismiss() }
         dialog.show()
     }
-    private fun drawHorizontalBarChart(chart: BarChart, score: MyFaceScore) {
-        val corrects = listOf(score.angryCorrect,score.happyCorrect,score.neutralCorrect,score.surprisedCorrect,score.sadCorrect)
-        val wrongs = listOf(score.angryWrong,score.happyWrong,score.neutralWrong,score.surprisedWrong,score.sadWrong)
+    private fun drawHorizontalBarChart(chart: HorizontalBarChart, score: MyFaceScore) {
+        val corrects = listOf(
+            score.angryCorrect,
+            score.happyCorrect,
+            score.neutralCorrect,
+            score.surprisedCorrect,
+            score.sadCorrect
+        )
+        val wrongs = listOf(
+            score.angryWrong,
+            score.happyWrong,
+            score.neutralWrong,
+            score.surprisedWrong,
+            score.sadWrong
+        )
 
+        // 스택형 바 데이터 (맞음 + 틀림)
         val entries = corrects.indices.map { i ->
             BarEntry(i.toFloat(), floatArrayOf(corrects[i].toFloat(), wrongs[i].toFloat()))
         }
 
-        val dataSet = BarDataSet(entries, "내 표정 짓기 점수").apply {
+        val dataSet = BarDataSet(entries, "정답 개수").apply {
             setColors(intArrayOf(R.color.blue, R.color.red), requireContext())
             stackLabels = arrayOf("맞음", "틀림")
         }
 
-        chart.data = BarData(dataSet).apply { barWidth = 0.5f }
-
-        chart.xAxis.apply {
-            valueFormatter = IndexAxisValueFormatter(listOf("화남", "기쁨", "무표정", "놀람","슬픔"))
-            position = XAxis.XAxisPosition.BOTTOM
-            granularity = 1f
+        chart.data = BarData(dataSet).apply {
+            barWidth = 0.5f
+            setValueFormatter(object : ValueFormatter() { // 막대 위 숫자 정수 처리
+                override fun getFormattedValue(value: Float): String {
+                    return value.toInt().toString()
+                }
+            })
         }
 
-        chart.axisLeft.axisMinimum = 0f
+        // X축 (카테고리)
+        chart.xAxis.apply {
+            valueFormatter = IndexAxisValueFormatter(listOf("화남", "기쁨", "무표정", "놀람", "슬픔"))
+            position = XAxis.XAxisPosition.BOTTOM
+            granularity = 1f
+            setDrawGridLines(false)
+        }
+
+        // Y축 (값, 정수만 표시)
+        chart.axisLeft.apply {
+            axisMinimum = 0f
+            granularity = 1f
+            valueFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return value.toInt().toString()
+                }
+            }
+        }
+
         chart.axisRight.isEnabled = false
         chart.description = Description().apply { text = "" }
+
         chart.invalidate()
     }
 }
