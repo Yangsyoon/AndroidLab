@@ -40,9 +40,9 @@
     <!-- 감정 사진: 화면 높이의 3/4 크기 -->
     <ImageView
         android:id="@+id/image_emotion"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         android:contentDescription="감정 사진"
         android:src="@drawable/test_happy_sample1"
         app:layout_constraintTop_toBottomOf="@id/header_container"
@@ -50,6 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.6"
         android:layout_marginTop="16dp"/>
+
 
     <!-- 감정 텍스트 + 아이콘 (가로 정렬) -->
     <LinearLayout

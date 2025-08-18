@@ -106,6 +106,7 @@ class EmotionQuizActivity : AppCompatActivity() {
 
         resultIcon.setImageResource(if (isCorrect) R.drawable.icon_correct3 else R.drawable.icon_wrong3)
         resultMessage.text = message
+        resultMessage.textSize = 16f
 
         resultContainer.visibility = View.VISIBLE
         resultIcon.visibility = View.VISIBLE
@@ -142,7 +143,7 @@ class EmotionQuizActivity : AppCompatActivity() {
 
         val isCorrect = selectedEmotion == correct
 
-        // ✅ 변경: 감정 인덱스 찾기 및 카운트 증가
+        // ✅ 감정 인덱스 찾기 및 카운트 증가
         val index = when (correct) {
             "화남" -> 0
             "기쁨" -> 1
@@ -154,13 +155,18 @@ class EmotionQuizActivity : AppCompatActivity() {
             if (isCorrect) correctCounts[index]++ else wrongCounts[index]++
         }
 
-        val message = "정답은 $correct 입니다"
+        val message = if (isCorrect) {
+            "잘했어요!\n정답은 $correct 입니다."
+        } else {
+            "아쉬워요!\n정답은 $correct 입니다."
+        }
         showResult(isCorrect, message)
 
         Handler(Looper.getMainLooper()).postDelayed({
             goToNextQuestion()
         }, 3000)
     }
+
 
     private fun loadQuestion() {
         val question = questionList[currentIndex]

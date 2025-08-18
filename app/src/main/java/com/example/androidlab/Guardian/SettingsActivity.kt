@@ -31,7 +31,6 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        switchSound = findViewById(R.id.switch_sound)
         switchVibration = findViewById(R.id.switch_vibration)
         recommand_text = findViewById(R.id.recommand_text)
 
@@ -39,12 +38,8 @@ class SettingsActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         val sharedPref = getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
-        switchSound.isChecked = sharedPref.getBoolean("sound", true)
         switchVibration.isChecked = sharedPref.getBoolean("vibration", true)
 
-        switchSound.setOnCheckedChangeListener { _, isChecked ->
-            sharedPref.edit().putBoolean("sound", isChecked).apply()
-        }
         switchVibration.setOnCheckedChangeListener { _, isChecked ->
             sharedPref.edit().putBoolean("vibration", isChecked).apply()
         }
