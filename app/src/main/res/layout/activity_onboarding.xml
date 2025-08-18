@@ -5,17 +5,14 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="16dp"
-    android:background="@color/soft_green"
-    android:fitsSystemWindows="true">
+    android:background="@color/soft_green">
 
 
     <!-- ViewPager2 : 각 페이지가 FrameLayout(휴대폰 + 내부 이미지) -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_height="700dp" />
 
 
 
@@ -24,8 +21,6 @@
         android:id="@+id/tabLayout"
         android:layout_width="wrap_content"
         android:layout_height="3dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         app:tabIndicatorHeight="3dp"
         app:tabSelectedTextColor="@color/green"
         app:tabTextColor="@color/gray"/>
