@@ -10,12 +10,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class OnboardingAdapter(private val images: List<Int>) :
+class OnboardingAdapter(private val images: List<Int>,private val titles: List<Int>,private val descriptions: List<Int>) :
     RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder>() {
 
     inner class OnboardingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
-        val phoneFrame: ImageView = itemView.findViewById(R.id.phoneFrame)
+        val titleView: TextView = itemView.findViewById(R.id.tvTitle)
+        val discriptView: TextView=itemView.findViewById(R.id.tvDescription)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnboardingViewHolder {
@@ -28,6 +29,7 @@ class OnboardingAdapter(private val images: List<Int>) :
 
     override fun onBindViewHolder(holder: OnboardingViewHolder, position: Int) {
         holder.imageView.setImageResource(images[position])
-        // 필요시 phoneFrame도 바꿀 수 있음
+        holder.titleView.text = holder.itemView.context.getString(titles[position])
+        holder.discriptView.text = holder.itemView.context.getString(descriptions[position])
     }
 }

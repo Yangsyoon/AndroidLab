@@ -14,13 +14,11 @@ class OnboardingActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
-    private lateinit var tvTitle: TextView
-    private lateinit var tvDescription: TextView
     private lateinit var btnStart: Button
 
-    private val images = listOf(R.drawable.main_screen, R.drawable.a_1, R.drawable.a_2)
-    private val titles = listOf("첫 번째 화면", "두 번째 화면", "세 번째 화면")
-    private val descriptions = listOf("앱 소개 1", "앱 소개 2", "앱 소개 3")
+    private val images = listOf(R.drawable.a_2, R.drawable.a_3, R.drawable.b_1, R.drawable.c_2, R.drawable.d_3, R.drawable.e_2, R.drawable.e_3, R.drawable.e_4)
+    private val titles = listOf(R.string.title1, R.string.title1,R.string.title2,R.string.title3,R.string.title4,R.string.title5,R.string.title6,R.string.title7)
+    private val descriptions = listOf(R.string.paragraph1_1,R.string.paragraph1_2,R.string.paragraph2_1,R.string.paragraph3_1,R.string.paragraph4_1,R.string.paragraph5_1,R.string.paragraph6_1,R.string.paragraph7_1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,20 +26,14 @@ class OnboardingActivity : AppCompatActivity() {
 
         viewPager = findViewById(R.id.viewPager)
         tabLayout = findViewById(R.id.tabLayout)
-        tvTitle = findViewById(R.id.tvTitle)
-        tvDescription = findViewById(R.id.tvDescription)
         btnStart = findViewById(R.id.btnStart)
 
-        tvTitle.text = titles[0]
-        tvDescription.text = descriptions[0]
         btnStart.visibility = View.GONE
 
-        viewPager.adapter = OnboardingAdapter(images)
+        viewPager.adapter = OnboardingAdapter(images,titles,descriptions)
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                tvTitle.text = titles[position]
-                tvDescription.text = descriptions[position]
                 btnStart.visibility = if (position == images.size - 1) View.VISIBLE else View.GONE
             }
         })

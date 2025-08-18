@@ -1,5 +1,36 @@
 <resources>
-    <string name="app_name">AndroidLab</string>
+    <string name="app_name">마물림</string>
     <string name="question_number">%1$d / %2$d  문제</string>
     <string name="detective_image">탐정 이미지</string>
+
+    <string name="title1">나는 감정 탐정!</string>
+    <string name="paragraph1_1">• 연습하기: 표정 사진과 함께 앱에서 감정 라벨을 제공해줍니다. 사진을 보고 감정 라벨을 매칭하는 연습을 할 수 있습니다.</string>
+    <string name="paragraph1_2">• 시험치기: 표정 사진을 보고 직접 감정 라벨을 선택해 답하는 시험을 제공합니다. 시험 결과는 ‘내 기록 보기’에서 확인할 수 있습니다.</string>
+
+    <string name="title2">속마음 알아보기</string>
+    <string name="paragraph2_1"> 상대방의 얼굴 표정을 분석하여 감정을 사용자에게 알려줍니다. 사용자는 진동으로 알림을 받거나, 화면을 보면서 상대방의 감정을 인지할 수 있습니다.</string>
+
+    <string name="title3">표정 지어보기</string>
+    <string name="paragraph3_1"> 앱에서 제시하는 표정을 사용자가 따라 짓습니다. 사용자의 얼굴 표정을 분석하여 제시된 표정과 일치하는지 확인합니다.</string>
+
+    <string name="title4">내 기록 보기</string>
+    <string name="paragraph4_1"> ‘나는 감정 탐정!’과 ‘표정 지어보기’ 활동의 점수를 확인할 수 있습니다. ‘그래프 보기’에서는 점수 변화 추이를, ‘상세 보기’에서는 감정별 점수를 볼 수 있습니다.</string>
+
+    <string name="title5">진동 커스텀</string>
+    <string name="paragraph5_1"> 각 감정별로 사용자가 인지하기 쉬운 진동 패턴으로 설정할 수 있습니다.\n
+• 펄스 길이는 진동 지속 시간을,\n
+• 쉼 길이는 진동 사이의 간격을,\n
+• 강도 시작은 진동 시작 부분의 세기를,\n
+• 강도 끝은진동 끝 부분의 세기를 의미합니다.</string>
+
+    <string name="title6">현재 진동 상태</string>
+    <string name="paragraph6_1"> 현재 설정된 진동 패턴과 상태를 확인할 수 있습니다. 기본 모드와 커스텀 모드 중 어느 모드가 활성화되어 있는지도 확인할 수 있습니다.</string>
+
+    <string name="title7">설정</string>
+    <string name="paragraph7_1"> 감정 인식에 익숙해지면 진동을 끌 수 있습니다. 진동 설정을 조절하여 사용자 맞춤형으로 훈련을 유연하게 진행할 수 있습니다.</string>
+
+
+
+
+
 </resources>

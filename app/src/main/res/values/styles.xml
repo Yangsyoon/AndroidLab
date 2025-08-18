@@ -30,4 +30,9 @@
         <item name="android:outlineProvider">none</item>
     </style>
 
+    <style name="RoundedCornerImage" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item> <!-- 모서리 둥근 정도 -->
+    </style>
+
 </resources>

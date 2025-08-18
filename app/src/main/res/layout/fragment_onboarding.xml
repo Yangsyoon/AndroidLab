@@ -1,23 +1,53 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#00000000">
 
-    <!-- 내부 화면 이미지 -->
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="280dp"
-        android:layout_height="560dp"
-        android:layout_gravity="center"/>
-    
-    <!-- 휴대폰 프레임 -->
-    <ImageView
-        android:id="@+id/phoneFrame"
-        android:layout_width="300dp"
-        android:layout_height="600dp"
+    <!-- 휴대폰 위쪽 바깥 : title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="O번째 화면"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <FrameLayout
+        android:layout_width="245dp"
+        android:layout_height="470dp"
         android:layout_gravity="center"
-        android:src="@drawable/smartphone"
-        android:scaleType="fitXY"/>
+        android:background="@drawable/phone_border"
+        android:clipToPadding="false"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
 
 
-</FrameLayout>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageView"
+            android:layout_width="225dp"
+            android:layout_height="450dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/RoundedCornerImage"/>
+
+    </FrameLayout>
+
+    <!-- 휴대폰 아래쪽 바깥 : description -->
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="앱 소개"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>

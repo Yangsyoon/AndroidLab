@@ -5,33 +5,30 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="16dp"
-    android:background="#EEEEEE">
+    android:background="@color/soft_green"
+    android:fitsSystemWindows="true">
 
-    <!-- 휴대폰 위쪽 바깥 : title -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="첫 번째 화면"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="12dp"/>
 
     <!-- ViewPager2 : 각 페이지가 FrameLayout(휴대폰 + 내부 이미지) -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="600dp"/>
-
-    <!-- 휴대폰 아래쪽 바깥 : description -->
-    <TextView
-        android:id="@+id/tvDescription"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="앱 소개 1"
-        android:textSize="16sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="12dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+
+
+    <!-- 점 인디케이터 -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:tabIndicatorHeight="3dp"
+        app:tabSelectedTextColor="@color/green"
+        app:tabTextColor="@color/gray"/>
 
     <!-- 시작하기 버튼 -->
     <Button
@@ -43,15 +40,8 @@
         android:textColor="@android:color/white"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
 
-    <!-- 점 인디케이터 -->
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:tabIndicatorHeight="0dp"
-        app:tabSelectedTextColor="@color/green"
-        app:tabTextColor="@color/gray"/>
+
 </LinearLayout>
