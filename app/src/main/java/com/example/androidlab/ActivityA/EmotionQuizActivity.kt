@@ -138,12 +138,15 @@ class EmotionQuizActivity : AppCompatActivity() {
 
 
     private fun checkAnswer(selectedEmotion: String) {
+        // 이미 답이 공개되었다면 클릭 무시
+        if (isAnswerRevealed) return
+
         val correct = questionList[currentIndex].correctEmotion
         isAnswerRevealed = true
 
         val isCorrect = selectedEmotion == correct
 
-        // ✅ 감정 인덱스 찾기 및 카운트 증가
+        // 감정별 카운트 증가
         val index = when (correct) {
             "화남" -> 0
             "기쁨" -> 1
@@ -166,6 +169,7 @@ class EmotionQuizActivity : AppCompatActivity() {
             goToNextQuestion()
         }, 3000)
     }
+
 
 
     private fun loadQuestion() {

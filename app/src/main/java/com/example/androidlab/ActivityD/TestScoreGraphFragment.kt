@@ -131,6 +131,10 @@ class TestScoreGraphFragment : Fragment(R.layout.fragment_test_score_graph) {
         }
 
         // ✅ 차트 시각 옵션
+        chart.axisLeft.apply {
+            axisMinimum = 0f
+            axisMaximum = 100f
+        }
         chart.axisRight.isEnabled = false
         chart.description = Description().apply { text = "" }
         chart.setTouchEnabled(true)

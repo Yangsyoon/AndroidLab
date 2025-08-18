@@ -13,7 +13,7 @@ class MyFaceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_face)
 
-        val fullList = List(2) { emotionLabels }.flatten().shuffled()
+        val fullList = List(1) { emotionLabels }.flatten().shuffled()
 
 
         val startButton=findViewById<Button>(R.id.btn_start)
