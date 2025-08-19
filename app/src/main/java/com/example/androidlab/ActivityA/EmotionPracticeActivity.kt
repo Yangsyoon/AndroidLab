@@ -24,10 +24,10 @@ class EmotionPracticeActivity : AppCompatActivity() {
     private lateinit var finishPracticeButton: View
 
     private val emotionImages = listOf(
-        R.drawable.train_happy_sample1 to "기쁨",
-        R.drawable.train_sad_sample1 to "슬픔",
-        R.drawable.train_angry_sample1 to "화남",
-        R.drawable.train_surprised_sample1 to "놀람",
+        R.drawable.happy_0 to "기쁨",
+        R.drawable.sad_0 to "슬픔",
+        R.drawable.angry_0 to "화남",
+        R.drawable.surprised_0 to "놀람",
     )
 
     private var currentIndex = 0

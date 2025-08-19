@@ -20,19 +20,121 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.Random
 
 
 class EmotionQuizActivity : AppCompatActivity() {
 
     data class Question(val imageResId: Int, val correctEmotion: String)
 
-    private val questionList = listOf(
-        Question(R.drawable.test_surprised_sample1, "놀람"),
-        Question(R.drawable.test_sad_sample1, "슬픔"),
-        Question(R.drawable.test_angry_sample1, "화남"),
-        Question(R.drawable.test_happy_sample1, "기쁨"),
-        // 최대 16문제까지 추가 가능
+    // ✅ 감정별 이미지 리스트
+    private val angryImages = listOf(
+        R.drawable.angry_1,
+        R.drawable.angry_2,
+        R.drawable.angry_3,
+        R.drawable.angry_4,
+        R.drawable.angry_5,
+        R.drawable.angry_6,
+        R.drawable.angry_7,
+        R.drawable.angry_8,
+        R.drawable.angry_9,
+        R.drawable.angry_10,
+        R.drawable.angry_11,
+        R.drawable.angry_12,
+        R.drawable.angry_13,
+        R.drawable.angry_14,
+        R.drawable.angry_15,
+        R.drawable.angry_16,
+        R.drawable.angry_17,
+        R.drawable.angry_18,
+        R.drawable.angry_19,
+        R.drawable.angry_20,
     )
+
+    private val happyImages = listOf(
+        R.drawable.happy_1,
+        R.drawable.happy_2,
+        R.drawable.happy_3,
+        R.drawable.happy_4,
+        R.drawable.happy_5,
+        R.drawable.happy_6,
+        R.drawable.happy_7,
+        R.drawable.happy_8,
+        R.drawable.happy_9,
+        R.drawable.happy_10,
+        R.drawable.happy_11,
+        R.drawable.happy_12,
+        R.drawable.happy_13,
+        R.drawable.happy_14,
+        R.drawable.happy_15,
+        R.drawable.happy_16,
+        R.drawable.happy_17,
+        R.drawable.happy_18,
+        R.drawable.happy_19,
+        R.drawable.happy_20
+
+    )
+
+    private val surprisedImages = listOf(
+        R.drawable.surprised_1,
+        R.drawable.surprised_2,
+        R.drawable.surprised_3,
+        R.drawable.surprised_4,
+        R.drawable.surprised_5,
+        R.drawable.surprised_6,
+        R.drawable.surprised_7,
+        R.drawable.surprised_8,
+        R.drawable.surprised_9,
+        R.drawable.surprised_10,
+        R.drawable.surprised_11,
+        R.drawable.surprised_12,
+        R.drawable.surprised_13,
+        R.drawable.surprised_14,
+        R.drawable.surprised_15,
+        R.drawable.surprised_16,
+        R.drawable.surprised_17,
+        R.drawable.surprised_18,
+        R.drawable.surprised_19,
+        R.drawable.surprised_20
+
+    )
+
+    private val sadImages = listOf(
+        R.drawable.sad_1,
+        R.drawable.sad_2,
+        R.drawable.sad_3,
+        R.drawable.sad_4,
+        R.drawable.sad_5,
+        R.drawable.sad_6,
+        R.drawable.sad_7,
+        R.drawable.sad_8,
+        R.drawable.sad_9,
+        R.drawable.sad_10,
+        R.drawable.sad_11,
+        R.drawable.sad_12,
+        R.drawable.sad_13,
+        R.drawable.sad_14,
+        R.drawable.sad_15,
+        R.drawable.sad_16,
+        R.drawable.sad_17,
+        R.drawable.sad_18,
+        R.drawable.sad_19,
+        R.drawable.sad_20
+    )
+
+    // ✅ k개씩 뽑아서 랜덤으로 섞은 문제 리스트
+    private val questionList: List<Question> by lazy {
+        val k = 5  // 각 감정별 몇 개 뽑을지
+        val random = Random(System.currentTimeMillis())
+
+        val angryQs = angryImages.shuffled(random).take(k).map { Question(it, "화남") }
+        val happyQs = happyImages.shuffled(random).take(k).map { Question(it, "기쁨") }
+        val surprisedQs = surprisedImages.shuffled(random).take(k).map { Question(it, "놀람") }
+        val sadQs = sadImages.shuffled(random).take(k).map { Question(it, "슬픔") }
+
+        // 전체 합치고 섞기
+        (angryQs + happyQs + surprisedQs + sadQs).shuffled(random)
+    }
 
     private var currentIndex = 0
     private lateinit var imageView: ImageView
@@ -44,7 +146,7 @@ class EmotionQuizActivity : AppCompatActivity() {
     private var selectedEmotion: String? = null
     private var isAnswerRevealed = false
 
-    private val totalQuestions = questionList.size
+    private val totalQuestions by lazy { questionList.size }
 
     // ✅ 변경: 감정별 정답/오답 카운트 배열 추가 (0=화남, 1=기쁨, 2=놀람, 3=슬픔)
     private val correctCounts = IntArray(4) { 0 }
