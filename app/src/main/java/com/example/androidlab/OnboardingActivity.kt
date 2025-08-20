@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -16,7 +15,7 @@ class OnboardingActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var btnStart: Button
 
-    private val images = listOf(R.drawable.a_2, R.drawable.a_3, R.drawable.b_1, R.drawable.c_2, R.drawable.d_3, R.drawable.e_2, R.drawable.e_3, R.drawable.e_4)
+    private val images = listOf(R.drawable.a_2, R.drawable.a_3, R.drawable.b_1, R.drawable.c_2, R.drawable.d_33, R.drawable.e_2, R.drawable.e_3, R.drawable.e_44)
     private val titles = listOf(R.string.title1, R.string.title1,R.string.title2,R.string.title3,R.string.title4,R.string.title5,R.string.title6,R.string.title7)
     private val descriptions = listOf(R.string.paragraph1_1,R.string.paragraph1_2,R.string.paragraph2_1,R.string.paragraph3_1,R.string.paragraph4_1,R.string.paragraph5_1,R.string.paragraph6_1,R.string.paragraph7_1)
 
