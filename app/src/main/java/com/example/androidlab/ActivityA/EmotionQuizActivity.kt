@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.androidlab.BaseActivity
 import com.example.androidlab.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,7 +24,7 @@ import java.time.format.DateTimeFormatter
 import java.util.Random
 
 
-class EmotionQuizActivity : AppCompatActivity() {
+class EmotionQuizActivity : BaseActivity() {
 
     data class Question(val imageResId: Int, val correctEmotion: String)
 

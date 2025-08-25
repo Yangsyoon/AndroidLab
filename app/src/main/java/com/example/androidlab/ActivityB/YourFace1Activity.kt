@@ -28,6 +28,8 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
+import com.example.androidlab.BaseActivity
 import com.example.androidlab.R
 import com.example.androidlab.utils.Haptics
 import com.google.mlkit.vision.common.InputImage
@@ -39,7 +41,7 @@ import java.io.FileInputStream
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 
-class YourFace1Activity : AppCompatActivity() {
+class YourFace1Activity : BaseActivity() {
 
     private lateinit var previewView: PreviewView
     private lateinit var faceThumbnail: ImageView

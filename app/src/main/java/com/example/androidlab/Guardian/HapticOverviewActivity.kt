@@ -4,10 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidlab.BaseActivity
 import com.example.androidlab.R
 import com.example.androidlab.utils.HapticPrefs
 
-class HapticOverviewActivity : AppCompatActivity() {
+class HapticOverviewActivity : BaseActivity() {
 
     private lateinit var rv: RecyclerView
     private lateinit var adapter: HapticChartAdapter

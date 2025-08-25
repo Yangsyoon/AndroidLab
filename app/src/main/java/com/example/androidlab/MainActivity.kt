@@ -30,7 +30,7 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var welcome_text: TextView

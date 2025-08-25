@@ -28,6 +28,7 @@ import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
+import com.example.androidlab.BaseActivity
 import com.example.androidlab.R
 import org.tensorflow.lite.Interpreter
 import java.io.File
@@ -39,7 +40,7 @@ import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetectorOptions
 
 
-class MyFace2Activity : AppCompatActivity() {
+class MyFace2Activity : BaseActivity() {
     private lateinit var previewView: PreviewView
     private lateinit var countdownText: TextView
     private var imageCapture: ImageCapture? = null

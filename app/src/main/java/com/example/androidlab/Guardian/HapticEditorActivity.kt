@@ -8,6 +8,8 @@ import android.os.Vibrator
 import android.os.VibratorManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
+import com.example.androidlab.BaseActivity
 import com.example.androidlab.R
 import com.example.androidlab.utils.HapticPrefs
 import com.example.androidlab.utils.Haptics
@@ -22,7 +24,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 // 커스텀 NumberPicker
 import com.shawnlin.numberpicker.NumberPicker as HNumberPicker
-class HapticEditorActivity : AppCompatActivity() {
+class HapticEditorActivity : BaseActivity() {
 
     private lateinit var rgEmotion: RadioGroup
     //private lateinit var npPulses: NumberPicker

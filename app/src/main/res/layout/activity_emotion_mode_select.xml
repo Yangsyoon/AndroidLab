@@ -5,12 +5,13 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/soft_green">
+    android:background="@color/soft_green"
+    android:layout_marginTop="26dp">
 
     <!-- 상단 헤더 -->
     <LinearLayout
         android:id="@+id/header_container"
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="70dp"
         android:orientation="horizontal"
         android:background="@drawable/detect_bg"

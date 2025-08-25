@@ -10,8 +10,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import android.view.View
+import androidx.core.content.ContextCompat.startActivity
+import com.example.androidlab.BaseActivity
 
-class MyFace3Activity : AppCompatActivity() {
+class MyFace3Activity : BaseActivity() {
 
     private lateinit var answer_emotionList: ArrayList<String>
     private lateinit var my_emotionList: ArrayList<String>

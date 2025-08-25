@@ -7,12 +7,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidlab.ActivityD.MyFaceScore
 import com.example.androidlab.ActivityD.TestScore
+import com.example.androidlab.BaseActivity
 import com.example.androidlab.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : BaseActivity() {
 
     private lateinit var switchSound: Switch
     private lateinit var switchVibration: Switch

@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="16dp"
-    android:background="@color/soft_green">
+    android:background="@color/soft_green"
+    android:layout_marginTop="26dp">
 
 
     <!-- ViewPager2 : 각 페이지가 FrameLayout(휴대폰 + 내부 이미지) -->

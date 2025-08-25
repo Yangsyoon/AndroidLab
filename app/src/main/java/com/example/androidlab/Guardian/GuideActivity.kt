@@ -8,10 +8,11 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
+import com.example.androidlab.BaseActivity
 import com.example.androidlab.MainActivity
 import com.example.androidlab.databinding.ActivityGuideBinding
 
-class GuideActivity : AppCompatActivity() {
+class GuideActivity : BaseActivity() {
 
     private lateinit var binding: ActivityGuideBinding
 

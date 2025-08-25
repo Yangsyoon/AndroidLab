@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.androidlab.BaseActivity
 import com.example.androidlab.MainActivity
 import com.example.androidlab.R
 import com.google.firebase.auth.FirebaseAuth
@@ -14,7 +16,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlinx.coroutines.launch
 
-class MyFace4Activity : AppCompatActivity() {
+class MyFace4Activity : BaseActivity() {
 
     private lateinit var answer_emotionList: ArrayList<String>
     private lateinit var my_emotionList: ArrayList<String>

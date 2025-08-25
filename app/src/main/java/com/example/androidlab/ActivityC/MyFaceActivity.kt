@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
+import com.example.androidlab.BaseActivity
 import com.example.androidlab.R
 
-class MyFaceActivity : AppCompatActivity() {
+class MyFaceActivity : BaseActivity() {
 
     private val emotionLabels = listOf("화남", "기쁨", "무표정", "놀람","슬픔")
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -11,11 +11,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
+import com.example.androidlab.BaseActivity
 import com.example.androidlab.R
 import com.example.androidlab.utils.HapticPrefs
 import com.example.androidlab.utils.Haptics
 
-class EmotionPracticeActivity : AppCompatActivity() {
+class EmotionPracticeActivity : BaseActivity() {
 
     private lateinit var imageView: ImageView
     private lateinit var answerText: TextView
