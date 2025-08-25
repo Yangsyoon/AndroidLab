@@ -124,7 +124,7 @@ class EmotionQuizActivity : AppCompatActivity() {
 
     // ✅ k개씩 뽑아서 랜덤으로 섞은 문제 리스트
     private val questionList: List<Question> by lazy {
-        val k = 1  // 각 감정별 몇 개 뽑을지
+        val k = 5  // 각 감정별 몇 개 뽑을지
         val random = Random(System.currentTimeMillis())
 
         val angryQs = angryImages.shuffled(random).take(k).map { Question(it, "화남") }
