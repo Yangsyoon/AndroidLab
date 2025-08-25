@@ -44,38 +44,8 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/welcome_card" />
 
-<<<<<<< HEAD
             <TextView
                 android:id="@+id/welcome_text"
-=======
-                <!-- 카드 배경 이미지 -->
-                <ImageView
-                    android:id="@+id/welcome_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/welcome_card3" />
-
-                <!-- 겹치는 텍스트 (하얀 공간에 맞춰 배치) -->
-                <TextView
-                    android:id="@+id/welcome_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="158dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="center"
-                    android:lineSpacingExtra="4dp"
-                    android:maxLines="4"
-                    android:textColor="@android:color/black"
-                    android:fontFamily="sans-serif-medium"
-                    android:textSize="22sp" />
-            </FrameLayout>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_detective"
->>>>>>> origin/junbeom
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="158dp"
