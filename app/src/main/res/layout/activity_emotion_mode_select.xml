@@ -10,7 +10,7 @@
     <!-- 상단 헤더 -->
     <LinearLayout
         android:id="@+id/header_container"
-        android:layout_width="330dp"
+        android:layout_width="364dp"
         android:layout_height="70dp"
         android:orientation="horizontal"
         android:background="@drawable/detect_bg"

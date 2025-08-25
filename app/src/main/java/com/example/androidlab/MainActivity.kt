@@ -98,7 +98,7 @@ class MainActivity : BaseActivity() {
                         "${name}야"
                     }
 
-                    welcome_text.text = "${nameAhYa}!\n만나서 반가워!\n오늘도 같이 놀자!"
+                    welcome_text.text = "${nameAhYa}!\n만나서 반가워!\n오늘도\n 같이 놀자!"
                 }
         }
 

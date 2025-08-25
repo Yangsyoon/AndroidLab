@@ -41,6 +41,7 @@
         app:layout_constraintVertical_bias="0.18"
         app:layout_constraintHorizontal_bias="0.83" />
 
+<<<<<<< HEAD
     <!-- 왼쪽 아래 텍스트 -->
     <TextView
         android:id="@+id/detective_score_board_text"
@@ -76,12 +77,63 @@
         app:layout_constraintEnd_toEndOf="@id/score_board"
         app:layout_constraintVertical_bias="0.85"
         app:layout_constraintHorizontal_bias="0.78" />
+=======
+        <!-- 겹치는 텍스트 (하얀 공간에 맞춰 배치) -->
+        <TextView
+            android:id="@+id/score_board_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="172dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="23dp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:maxLines="3"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/detective_score_board_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="187dp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:maxLines="3"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/black"
+            android:textSize="28sp" />
+        <TextView
+            android:id="@+id/facial_score_board_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="183dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="21dp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:maxLines="3"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/black"
+            android:textSize="28sp" />
+    </FrameLayout>
+>>>>>>> origin/junbeom
 
     <!-- 첫 번째 버튼 영역 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_goToTestScore"
+<<<<<<< HEAD
         android:layout_width="0dp"
         android:layout_height="246dp"
+=======
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="16dp"
+>>>>>>> origin/junbeom
         android:background="@drawable/detective_score_card2"
         android:clickable="true"
         android:focusable="true"
@@ -95,8 +147,15 @@
     <!-- 두 번째 버튼 영역 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_goToMyFaceScore"
+<<<<<<< HEAD
         android:layout_width="0dp"
         android:layout_height="246dp"
+=======
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="0dp"
+>>>>>>> origin/junbeom
         android:background="@drawable/facial_score_card2"
         android:clickable="true"
         android:focusable="true"
