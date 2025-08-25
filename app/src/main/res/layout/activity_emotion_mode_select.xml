@@ -1,8 +1,7 @@
-<!-- res/layout/activity_emotion_mode_select.xml -->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/soft_green"
@@ -40,91 +39,67 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- 가운데 카드 2개 컨테이너 -->
-    <LinearLayout
-        android:id="@+id/button_container"
-        android:layout_width="0dp"
+    <!-- 연습하기 카드 -->
+    <FrameLayout
+        android:id="@+id/button_practice"
+        android:layout_width="330dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_margin="16dp"
-        android:weightSum="2"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         app:layout_constraintTop_toBottomOf="@id/header_container"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_test"
+        app:layout_constraintHeight_percent="0.4"
+        android:layout_marginTop="16dp">
 
-        <!-- 연습하기 카드 -->
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="match_parent"
+            android:src="@drawable/detective_practice_bg4"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true" />
 
-            <FrameLayout
-                android:id="@+id/button_practice"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/detective_practice_bg4"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="연습하기"
-                    android:textSize="25sp"
-                    android:fontFamily="sans-serif-medium"
-                    android:textColor="@android:color/black"
-                    android:gravity="center" />
-            </FrameLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!-- 시험치기 카드 -->
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="16dp">
+            android:layout_height="match_parent"
+            android:text="연습하기"
+            android:textSize="25sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/black"
+            android:gravity="center" />
+    </FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/button_test"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+    <!-- 시험치기 카드 -->
+    <FrameLayout
+        android:id="@+id/button_test"
+        android:layout_width="330dp"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintTop_toBottomOf="@id/button_practice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/detective_test_bg3"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true" />
+        app:layout_constraintHeight_percent="0.4"
+        android:layout_marginTop="16dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="시험치기"
-                    android:textSize="25sp"
-                    android:fontFamily="sans-serif-medium"
-                    android:textColor="@android:color/black"
-                    android:gravity="center" />
-            </FrameLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/detective_test_bg3"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="시험치기"
+            android:textSize="25sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/black"
+            android:gravity="center" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
