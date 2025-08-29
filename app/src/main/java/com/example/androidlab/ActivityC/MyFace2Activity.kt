@@ -264,10 +264,18 @@ class MyFace2Activity : BaseActivity() {
                         val croppedFace = Bitmap.createBitmap(bitmap, left, top, width, height)
                         onFaceCropped(croppedFace)
                     }
+                }else {
+                    Log.d("FaceCrop", "얼굴 인식 실패 → 1초 후 재시도")
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        takePhoto()
+                    }, 1000) // 1초 후 재시도
                 }
             }
             .addOnFailureListener {
                 Log.e("FaceCrop", "Face detection failed", it)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    takePhoto()
+                }, 1000) // 실패 시도도 재시도
             }
     }
 
